@@ -58,12 +58,23 @@ Follow these steps to install and set up the inventory management system:
 ### API (Asp.Net Core Web Api Application)
 **Products endpoint**
 All Methods need Authorization, auth method is basic auth using username, password
+{{urlBase}} is http://localhost:5280
 
 <!-- ............................................ -->
 **Method:** `GET`
+**Description:**
+gets all products.
+**Example:**
+GET h{{urlBase}}/api/Products
+
+<!-- ............................................ -->
+**Method:** `GET`
+**Description:**
+serach on products.
 **Parameters:**
-
-
+`keyword` keyword is either a product name or barcode 
+**Example:**
+GET h{{urlBase}}/api/Products/keyword
 
 <!-- ............................................ -->
 **Method:** `POST`
@@ -82,6 +93,7 @@ adds a new product to database.
 
 `Category` (string, required): category of product.
 
+**Example:**
 POST {{urlBase}}/api/Products \
   -H "Content-Type: application/json" \
   -d '{
@@ -96,5 +108,43 @@ POST {{urlBase}}/api/Products \
 
 <!-- ............................................ -->
 **Method:** `PUT`
+**Description:**
+updates product.
+**Parameters:**
+`keyword` keyword is either a product name or barcode 
+
+`Name` (string, required): name of product.
+
+`Barcode` (string, required): barcode of product.
+
+`Price` (int, required): price if product.
+
+`Quantity` (int, required): item numbers of product.
+
+`Status` (string, required): stock status of product.
+
+`Category` (string, required): category of product.
+
+**Example:**
+all Parameters left empty will not update there values.
+in this example only will update the quantity and the status.
+
+POST {{urlBase}}/api/Products \
+  -H "Content-Type: application/json" \
+  -d '{
+  
+    "name":"",
+    "barcode":"",
+    "price":"",
+    "quantity":"200",
+    "status":"in stock",
+    "category":""
+}'
 <!-- ............................................ -->
 **Method:** `DELETE`
+**Description:**
+delete products.
+**Parameters:**
+`keyword` keyword is either a product name or barcode 
+**Example:**
+Delete h{{urlBase}}/api/Products/keyword
