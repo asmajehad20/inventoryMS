@@ -57,7 +57,7 @@ Follow these steps to install and set up the inventory management system:
    
 ### API (Asp.Net Core Web Api Application)
 **Products endpoint**
-GET
-POST
-PUT
-DELETE
+- GET
+- POST
+- PUT
+- DELETE
