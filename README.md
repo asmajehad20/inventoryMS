@@ -65,6 +65,7 @@ All Methods need Authorization, auth method is basic auth using username, passwo
 <!-- ............................................ -->
 **Description:**
 gets all products.
+<!-- ............................................ -->
 **Example:**
 GET h{{urlBase}}/api/Products
 
@@ -73,8 +74,10 @@ GET h{{urlBase}}/api/Products
 <!-- ............................................ -->
 **Description:**
 serach on products.
+<!-- ............................................ -->
 **Parameters:**
 `keyword` keyword is either a product name or barcode 
+<!-- ............................................ -->
 **Example:**
 GET h{{urlBase}}/api/Products/keyword
 
@@ -83,6 +86,7 @@ GET h{{urlBase}}/api/Products/keyword
 <!-- ............................................ -->
 **Description:**
 adds a new product to database.
+<!-- ............................................ -->
 **Parameters:**
 `Name` (string, required): name of product.
 
@@ -95,7 +99,7 @@ adds a new product to database.
 `Status` (string, required): stock status of product.
 
 `Category` (string, required): category of product.
-
+<!-- ............................................ -->
 **Example:**
 POST {{urlBase}}/api/Products \
   -H "Content-Type: application/json" \
@@ -114,6 +118,7 @@ POST {{urlBase}}/api/Products \
 <!-- ............................................ -->
 **Description:**
 updates product.
+<!-- ............................................ -->
 **Parameters:**
 `keyword` keyword is either a product name or barcode 
 
@@ -128,7 +133,7 @@ updates product.
 `Status` (string, required): stock status of product.
 
 `Category` (string, required): category of product.
-
+<!-- ............................................ -->
 **Example:**
 all Parameters left empty will not update there values.
 in this example only will update the quantity and the status.
@@ -149,7 +154,9 @@ POST {{urlBase}}/api/Products \
 <!-- ............................................ -->
 **Description:**
 delete products.
+<!-- ............................................ -->
 **Parameters:**
 `keyword` keyword is either a product name or barcode 
+<!-- ............................................ -->
 **Example:**
 Delete h{{urlBase}}/api/Products/keyword
