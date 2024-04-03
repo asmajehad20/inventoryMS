@@ -30,13 +30,15 @@ role admin can:
 - view all system users.
 
 
-##Installation
+## Installation
 
 Follow these steps to install and set up the inventory management system:
 1. **Clone the Repository**
 2. **Navigate to the Project Directory**
 3. **Install Dependencies:**
-   dotnet add package Npgsql. This command installs the Npgsql package, which is the .NET data provider for PostgreSQL.
+   - dotnet add package Npgsql. This command installs the Npgsql package, which is the .NET data provider for PostgreSQL.
 4. **Set Up PostgreSQL Database**
+5.**Start the Application:**
 
+## Usage
 
