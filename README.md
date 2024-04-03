@@ -43,21 +43,17 @@ Follow these steps to install and set up the inventory management system:
 ## Usage
 ### CLI (Console Application)
 1. **Main Screen (Login/Register Screen):**
-   - l or login   --to login--
+   - l or login  (to login)
      if valid user will redirect the user to the valid page according to role.
-   - r or register --to register--
+   - r or register (to register)
 3. **User Screen:**
-   - u --to view options related to user--
-   - - users options: all/info/delete
-   - p  -- to view options related to products--
-   - - products options: all/add/update/delete/search/status/p_status
+   - u (to view options related to user) users options: all/info/delete
+   - p (to view options related to products) products options: all/add/update/delete/search/status/p_status
 5.  **Admin Screen:**
-   - roles -- to show roles options: all/add/delete.
-   - category -- to show categories options: all/add/delete.
-   - u --to view options related to user--
-   - - users options: all/info/delete
-   - p  -- to view options related to products--
-   - - products options: all/add/update/delete/search/status/p_status
+   - roles (to show roles options) all/add/delete.
+   - category (to show categories options) all/add/delete.
+   - u (to view options related to user) all/info/delete
+   - p (to view options related to products) all/add/update/delete/search/status/p_status
    
 ### API (Asp.Net Core Web Api Application)
 **Products endpoint**
