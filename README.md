@@ -67,6 +67,9 @@ All Methods need Authorization, auth method is basic auth using username, passwo
 
 <!-- ............................................ -->
 **Method:** `POST`
+**Description:**
+adds a new product to database.
+**Parameters:**
 `Name` (string, required): name of product.
 
 `Barcode` (string, required): barcode of product.
@@ -82,6 +85,7 @@ All Methods need Authorization, auth method is basic auth using username, passwo
 POST {{urlBase}}/api/Products \
   -H "Content-Type: application/json" \
   -d '{
+  
     "name":"product_name",
     "barcode":"222244442222",
     "price":"100",
