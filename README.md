@@ -9,12 +9,12 @@ some features are added in sight of future growth of project to add finantial tr
 3. [Installation](#installation)
    ---
 5. [Usage](#usage)
+   ---
 
 ## Features
 users in the systems are of roles user, admin.
-users permissions
 
-- role user can:
+role user can:
 - add new product 
 - update an existing product 
 - delete product 
@@ -29,5 +29,14 @@ role admin can:
 - add/delete roles.
 - view all system users.
 
+
+##Installation
+
+Follow these steps to install and set up the inventory management system:
+1. **Clone the Repository**
+2. **Navigate to the Project Directory**
+3. **Install Dependencies:**
+   dotnet add package Npgsql. This command installs the Npgsql package, which is the .NET data provider for PostgreSQL.
+4. **Set Up PostgreSQL Database**
 
 
