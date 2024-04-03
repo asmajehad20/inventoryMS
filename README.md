@@ -40,7 +40,7 @@ Follow these steps to install and set up the inventory management system:
 4. **Set Up PostgreSQL Database**
 5. **Start the Application:**
 
-## Usage
+## Intefaces
 ### CLI (Console Application)
 1. **Main Screen (Login/Register Screen):**
    - l or login  (to login)
