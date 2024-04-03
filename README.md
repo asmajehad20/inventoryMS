@@ -5,27 +5,29 @@ some features are added in sight of future growth of project to add finantial tr
 ## Table of Contents
 
 1. [Features](#features)
-2. [Installation](#installation)
-3. [Usage](#usage)
+   ---
+3. [Installation](#installation)
+   ---
+5. [Usage](#usage)
 
 ## Features
 users in the systems are of roles user, admin.
 users permissions
 
-role user can:
-add new product 
-update an existing product 
-delete product 
-search on product using a keyword. (keyword could be product name, barcode, category, stock status).
-view the stock status and quantity of product.
-view all the products
-view all products of a status(eg get all product that are low on stock)
+- role user can:
+- add new product 
+- update an existing product 
+- delete product 
+- search on product using a keyword. (keyword could be product name, barcode, category, stock status).
+- view the stock status and quantity of product.
+- view all the products
+- view all products of a status(eg get all product that are low on stock)
 
 role admin can:
-all users permissions 
-add/delete/view categories.
-add/delete roles.
-view all system users.
+- all users permissions 
+- add/delete/view categories.
+- add/delete roles.
+- view all system users.
 
 
 
