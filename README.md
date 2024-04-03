@@ -8,7 +8,7 @@ some features are added in sight of future growth of project to add finantial tr
    ---
 3. [Installation](#installation)
    ---
-5. [Usage](#usage)
+5. [Intefaces](#intefaces)
    ---
 
 ## Features
