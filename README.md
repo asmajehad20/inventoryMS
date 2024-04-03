@@ -57,7 +57,10 @@ Follow these steps to install and set up the inventory management system:
    
 ### API (Asp.Net Core Web Api Application)
 **Products endpoint**
-- GET
-- POST
-- PUT
-- DELETE
+All Methods need Authorization, auth method is basic auth using username, password
+
+<!-- ............................................ -->
+**Method:** `GET`
+**Method:** `POST`
+**Method:** `PUT`
+**Method:** `DELETE`
