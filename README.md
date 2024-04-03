@@ -41,5 +41,5 @@ Follow these steps to install and set up the inventory management system:
 5. **Start the Application:**
 
 ## Usage
-### CLI
-### API
+### CLI (Console Application)
+### API (Asp.Net Core Web Api Application)
