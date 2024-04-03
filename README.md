@@ -62,6 +62,7 @@ All Methods need Authorization, auth method is basic auth using username, passwo
 
 <!-- ............................................ -->
 **Method:** `GET`
+<!-- ............................................ -->
 **Description:**
 gets all products.
 **Example:**
@@ -69,6 +70,7 @@ GET h{{urlBase}}/api/Products
 
 <!-- ............................................ -->
 **Method:** `GET`
+<!-- ............................................ -->
 **Description:**
 serach on products.
 **Parameters:**
@@ -78,6 +80,7 @@ GET h{{urlBase}}/api/Products/keyword
 
 <!-- ............................................ -->
 **Method:** `POST`
+<!-- ............................................ -->
 **Description:**
 adds a new product to database.
 **Parameters:**
@@ -108,6 +111,7 @@ POST {{urlBase}}/api/Products \
 
 <!-- ............................................ -->
 **Method:** `PUT`
+<!-- ............................................ -->
 **Description:**
 updates product.
 **Parameters:**
@@ -142,6 +146,7 @@ POST {{urlBase}}/api/Products \
 }'
 <!-- ............................................ -->
 **Method:** `DELETE`
+<!-- ............................................ -->
 **Description:**
 delete products.
 **Parameters:**
