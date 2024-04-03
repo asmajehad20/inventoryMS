@@ -61,8 +61,35 @@ All Methods need Authorization, auth method is basic auth using username, passwo
 
 <!-- ............................................ -->
 **Method:** `GET`
+**Parameters:**
+
+
+
 <!-- ............................................ -->
 **Method:** `POST`
+`Name` (string, required): name of product.
+
+`Barcode` (string, required): barcode of product.
+
+`Price` (int, required): price if product.
+
+`Quantity` (int, required): item numbers of product.
+
+`Status` (string, required): stock status of product.
+
+`Category` (string, required): category of product.
+
+POST {{urlBase}}/api/Products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"product_name",
+    "barcode":"222244442222",
+    "price":"100",
+    "quantity":"30",
+    "status":"low on stock",
+    "category":"category name"
+}'
+
 <!-- ............................................ -->
 **Method:** `PUT`
 <!-- ............................................ -->
