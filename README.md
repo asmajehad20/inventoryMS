@@ -42,4 +42,13 @@ Follow these steps to install and set up the inventory management system:
 
 ## Usage
 ### CLI (Console Application)
+1. **Main Screen (Login/Register Screen):**
+   - l or login   <to login>
+     if valid user will redirect the user to the valid page according to role.
+   - r or register <to register>
+3. **User Screen:**
+   - u <view options related to user>
+   - p < view options related to products>
+5.  **Admin Screen:**
+   
 ### API (Asp.Net Core Web Api Application)
