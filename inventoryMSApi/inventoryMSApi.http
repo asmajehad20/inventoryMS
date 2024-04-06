@@ -1,6 +1,0 @@
-@inventoryMSApi_HostAddress = http://localhost:5280
-
-GET {{inventoryMSApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
