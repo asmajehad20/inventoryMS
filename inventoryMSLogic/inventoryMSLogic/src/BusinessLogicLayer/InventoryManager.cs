@@ -57,7 +57,6 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
                 throw new Exception("Product already exists with the same barcode.");
             }
 
-            // Create product
             Product product = new()
             {
                 Name = name,
@@ -142,9 +141,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <returns>An array of strings representing all categories.</returns>
         public static string[] GetCategories()
         {
-            string JsonCategories = ProductData.GetAllCategories();
-            string[] categories = JsonSerializer.Deserialize<string[]>(JsonCategories) ?? [];
-            return categories;
+            return ProductData.GetAllCategories();
         }
 
         /// <summary>
@@ -153,10 +150,9 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <returns>A dictionary containing category IDs and their corresponding names.</returns>
         public static Dictionary<int, string> GetAllCategories()
         {
-            string jsonCategories = ProductData.GetAllCategories();
-            List<string> categoriesList = JsonSerializer.Deserialize<List<string>>(jsonCategories);
+            List<string> categoriesList = ProductData.GetAllCategories().ToList();
 
-            Dictionary<int, string> categories = new Dictionary<int, string>();
+            Dictionary<int, string> categories = [];
 
             for (int i = 0; i < categoriesList.Count; i++)
             {
@@ -236,14 +232,14 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// </summary>
         /// <param name="keyword">The keyword to identify the product.</param>
         /// <returns>The product matching the provided keyword.</returns>
-        public static Product GetProduct(string keyword)
+        public static Product? GetProduct(string keyword)
         {
-            Product? product = null;
-            if (CheckIfProductExists(keyword))
+            if (!CheckIfProductExists(keyword))
             {
-                return ProductData.GetProduct(keyword);
-            } 
-            return product;
+                throw new Exception("product not found");
+            }
+
+            return ProductData.GetProduct(keyword);
         }
 
         /// <summary>

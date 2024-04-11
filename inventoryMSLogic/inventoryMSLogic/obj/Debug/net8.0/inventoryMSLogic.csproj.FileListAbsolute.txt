@@ -10,3 +10,16 @@ C:\Users\pc\Desktop\QTZ\tasks\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\refint\inventoryMSLogic.dll
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.pdb
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\ref\inventoryMSLogic.dll
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\bin\Debug\net8.0\inventoryMSLogic.deps.json
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\bin\Debug\net8.0\inventoryMSLogic.dll
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\bin\Debug\net8.0\inventoryMSLogic.pdb
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.csproj.AssemblyReference.cache
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.AssemblyInfoInputs.cache
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.AssemblyInfo.cs
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.csproj.CoreCompileInputs.cache
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.sourcelink.json
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.dll
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\refint\inventoryMSLogic.dll
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.pdb
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\ref\inventoryMSLogic.dll

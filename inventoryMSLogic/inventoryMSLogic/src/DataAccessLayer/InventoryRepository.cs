@@ -338,11 +338,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
 
 
 
-        
-
-        
-
-        
         /// <summary>
         /// Deletes a product from the database based on the provided keyword (barcode or product name).
         /// </summary>
@@ -463,7 +458,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Retrieves all categories from the database and returns them as JSON.
         /// </summary>
         /// <returns>A JSON string containing information about all categories.</returns>
-        public string GetAllCategories()
+        public string[] GetAllCategories()
         {
             List<string> categories = [];
 
@@ -491,8 +486,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 dbConnection.CloseConnection(); 
             }
 
-            string jsonProducts = JsonSerializer.Serialize(categories);
-            return jsonProducts;
+            return categories.ToArray();
         }
 
         /// <summary>

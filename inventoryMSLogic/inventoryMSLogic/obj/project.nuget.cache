@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nOCCrYohCEIJD2FFUrwK1KXKPAEd2q8kNMEVaacIQiWskgMpHS4DBafqJn7bisj2p3lg4mmx+ykpJnKwe71m7A==",
+  "dgSpecHash": "p/wQJb7GwrxfBusHfRm3Dm7idi929Bc601bhxB+F4Z3Hu8QCk+a5PE4QnYmoGUhuHP6hFHA4UhrACXmpe3U1Vw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
+  "projectFilePath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",

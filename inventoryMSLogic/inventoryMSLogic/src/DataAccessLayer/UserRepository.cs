@@ -104,7 +104,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="UserName">The username of the user to be created.</param>
         /// <param name="Password">The password of the user to be created.</param>
         /// <param name="Role">The role of the user to be created.</param>
-        public void CreateUser(string UserName, string Password, string Role)
+        public bool CreateUser(string UserName, string Password, string Role)
         {
             try
             {
@@ -120,11 +120,13 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 cmd.ExecuteNonQuery();
 
                 Console.WriteLine($"User Registered");
+                return true;
 
             }
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error :: couldnt register : {ex.Message}");
+                return false;
             }
             finally
             {
@@ -164,7 +166,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Retrieves all users from the database and returns them as JSON.
         /// </summary>
         /// <returns>A JSON string containing information about all users.</returns>
-        public string GetAllUsers()
+        public User[] GetAllUsers()
         {
             List<User> UsersList = [];
 
@@ -201,15 +203,14 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 dbConnection.CloseConnection();
             }
 
-            string jsonUsers = JsonSerializer.Serialize(UsersList);
-            return jsonUsers;
+            return UsersList.ToArray();
         }
 
         /// <summary>
         /// Retrieves all roles from the database and returns them as JSON.
         /// </summary>
         /// <returns>A JSON string containing information about all roles.</returns>
-        public string GetAllRoles()
+        public string[] GetAllRoles()
         {
             List<string> RolesList = [];
 
@@ -236,15 +237,14 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 dbConnection.CloseConnection(); 
             }
 
-            string jsonRoles = JsonSerializer.Serialize(RolesList);
-            return jsonRoles;
+            return RolesList.ToArray();
         }
 
         /// <summary>
         /// Adds a new role to the database.
         /// </summary>
         /// <param name="rolename">The name of the role to be added.</param>
-        public void AddRoles(string rolename)
+        public bool AddRoles(string rolename)
         {
             
             try
@@ -255,19 +255,19 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@name", rolename);
                 cmd.ExecuteNonQuery();
-
+                return true;
                
             }
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error :: retrieving roles failed: {ex.Message}");
+                return false;
             }
             finally
             {
                 dbConnection.CloseConnection();
             }
 
-            return;
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Deletes a role from the database.
         /// </summary>
         /// <param name="rolename">The name of the role to be deleted.</param>
-        public void DeleteRole(string rolename)
+        public bool DeleteRole(string rolename)
         {
             try
             {
@@ -319,10 +319,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
                     cmd.Parameters.AddWithValue("@name", rolename);
                     cmd.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error deleting role: {ex.Message}");
+                return false;
             }
             finally
             {

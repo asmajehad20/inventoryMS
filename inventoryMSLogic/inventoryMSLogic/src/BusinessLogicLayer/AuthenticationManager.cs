@@ -42,7 +42,17 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
 
             UserRepository UserData = new();
             string PasswordHash = GetPasswordHash(Password);
-            UserData.CreateUser(UserName, PasswordHash, Role);
+
+            try
+            {
+                if(!UserData.CreateUser(UserName, PasswordHash, Role))
+                    throw new Exception("Registration failed");
+            }
+            catch(Exception ex)
+            {
+                Console.Error.WriteLine("Registration failed: " + ex.Message);
+            }
+            
            
         }
 

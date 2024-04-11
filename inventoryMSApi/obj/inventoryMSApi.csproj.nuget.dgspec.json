@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSApi\\inventoryMSApi.csproj": {}
+    "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSApi\\inventoryMSApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSApi\\inventoryMSApi.csproj": {
+    "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSApi\\inventoryMSApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSApi\\inventoryMSApi.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSApi\\inventoryMSApi.csproj",
         "projectName": "inventoryMSApi",
-        "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSApi\\inventoryMSApi.csproj",
+        "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSApi\\inventoryMSApi.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSApi\\obj\\",
+        "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj": {
-                "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj"
+              "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj": {
+                "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj"
               }
             }
           }
@@ -38,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -72,14 +77,14 @@
         }
       }
     },
-    "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj": {
+    "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
         "projectName": "inventoryMSLogic",
-        "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
+        "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\obj\\",
+        "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -102,6 +107,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {

@@ -90,22 +90,18 @@ namespace inventoryMSApi.Controllers
 
             if (InventoryManager.CheckIfProductExists(keyword))
             {
-                Product existingProduct = InventoryManager.GetProduct(keyword);
 
-                string key = product.Name ?? product.Barcode;
-
-                string name = !string.IsNullOrEmpty(product.Name) ? product.Name : existingProduct.Name;
-                string barcode = !string.IsNullOrEmpty(product.Barcode) ? product.Barcode : existingProduct.Barcode;
+                string name = product.Name;
+                string barcode = product.Barcode;
                 
-                int price = (product.Price ==0) ? existingProduct.Price : product.Price;
-                int quantity = (product.Quantity == 0) ? existingProduct.Quantity : product.Quantity;
+                int price =  product.Price;
+                int quantity = product.Quantity;
 
-                string status = !string.IsNullOrEmpty(product.Status) ? product.Status : existingProduct.Status;
-                string category = !string.IsNullOrEmpty(product.CategoryName) ? product.CategoryName : existingProduct.CategoryName;
+                string status = product.Status;
+                string category = product.CategoryName;
 
-                InventoryManager.UpdateProduct(key, name, barcode, price, quantity, status, category);
-                Product updatedProduct = InventoryManager.GetProduct(product.Name ?? product.Barcode ?? "");
-                return Ok(updatedProduct);
+                InventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category);
+                return Ok("product updated");
             }
 
             return NotFound("PRODUCT NOT FOUND.");
@@ -121,7 +117,7 @@ namespace inventoryMSApi.Controllers
         public IActionResult DeleteProduct(string keyword)
         {
 
-            Product existingProduct = InventoryManager.GetProduct(keyword);
+            Product? existingProduct = InventoryManager.GetProduct(keyword);
             if (existingProduct == null)
             {
                 return NotFound("Product not found.");
@@ -141,7 +137,7 @@ namespace inventoryMSApi.Controllers
         public IActionResult GetProduct(string keyword)
         {
 
-            Product product = InventoryManager.GetProduct(keyword);
+            Product? product = InventoryManager.GetProduct(keyword);
             if (string.IsNullOrEmpty(keyword))
             {
                 return NotFound();

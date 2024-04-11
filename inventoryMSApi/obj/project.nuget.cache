@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0ovj5SDl11TFLtizDzoNy/uX9sbhTPHqqA3aJdatMsP3hV6gBpaYRUrfE2Sswc7jGGUAiS5YvVhNZZMMklB3zw==",
+  "dgSpecHash": "LmN6fPQ/mCa354n9dYrVZaZ3pkXxcmMrsPcz+rzOhH7e2HhRtho4G1942aYSfk34y0Jfq4EYmAgbGUcH+uFx+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSApi\\inventoryMSApi.csproj",
+  "projectFilePath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSApi\\inventoryMSApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",

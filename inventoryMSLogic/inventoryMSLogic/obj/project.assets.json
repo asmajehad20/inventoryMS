@@ -196,11 +196,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
       "projectName": "inventoryMSLogic",
-      "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
+      "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\obj\\",
+      "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -223,6 +223,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

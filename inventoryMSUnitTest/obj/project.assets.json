@@ -5847,11 +5847,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
       "projectName": "inventoryMSUnitTest",
-      "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
+      "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSUnitTest\\obj\\",
+      "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5868,8 +5868,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj": {
-              "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj"
+            "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj": {
+              "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSLogic\\inventoryMSLogic\\inventoryMSLogic.csproj"
             }
           }
         }

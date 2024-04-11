@@ -66,8 +66,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         public static User[] GetAllUsers()
         {
             
-            string usersString = UserData.GetAllUsers();
-            User[] users = JsonSerializer.Deserialize<User[]>(usersString) ?? [];
+            User[] users = UserData.GetAllUsers(); 
 
             Console.WriteLine("Users:");
             Console.WriteLine("-----------------------------------------------------------------------------------------------");
@@ -91,8 +90,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         public static string[] GetAllRoles()
         {
 
-            string RolesString = UserData.GetAllRoles();
-            string[] roles = JsonSerializer.Deserialize<string[]>(RolesString) ?? [];
+            string[] roles = UserData.GetAllRoles(); 
 
             return roles;
 
@@ -106,7 +104,16 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         {
             if (string.IsNullOrEmpty(roleName) && !UserData.RoleExists(roleName))
             {
-                UserData.AddRoles(roleName);
+                try
+                {
+                    if (!UserData.AddRoles(roleName))
+                        throw new Exception("adding role failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine("adding role failed: " + ex.Message);
+                }
+                
             }
         }
 
@@ -118,7 +125,16 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         {
             if (string.IsNullOrEmpty(roleName) && !UserData.RoleExists(roleName))
             {
-                UserData.DeleteRole(roleName);
+                try
+                {
+                    if (!UserData.DeleteRole(roleName))
+                        throw new Exception("deleting role failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine("deleting role failed: " + ex.Message);
+                }
+
             }
         }
 

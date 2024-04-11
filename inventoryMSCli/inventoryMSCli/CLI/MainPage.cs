@@ -136,13 +136,9 @@ namespace inventoryMSCli.CLI
             }
             if (Password == "-exit" || Password == "exit") return;
 
-            //get role 
-            //string Role = "user";
             Console.WriteLine();
-
             string Role = SetRole();
            
-
             AuthenticationManager.RegisterUser(UserName, Password, Role);
         }
 
@@ -170,8 +166,7 @@ namespace inventoryMSCli.CLI
             Console.Write("Enter role text or numeric code: ");
 
             while (true)
-            {
-                
+            {  
                 string input = Console.ReadLine()?.ToLower().Trim() ?? "";
                 
                 if (int.TryParse(input, out int code))

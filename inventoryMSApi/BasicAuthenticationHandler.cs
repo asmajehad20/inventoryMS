@@ -7,18 +7,21 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using inventoryMSLogic.src.BusinessLogicLayer;
+using Microsoft.Extensions.Primitives;
 
 /// <summary>
 /// Handler for basic authentication.
 /// </summary>
 public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {
+    
+
     public BasicAuthenticationHandler(
         IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
-        ISystemClock clock)
-        : base(options, logger, encoder, clock)
+        TimeProvider timeProvider)
+        : base(options, logger, encoder)
     {
     }
 
@@ -31,19 +34,27 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
 
         try
         {
-            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers.Authorization);
-            var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
+            await Task.Yield();
+
+            var authorizationHeader = Request.Headers.Authorization;
+
+            if (StringValues.IsNullOrEmpty(authorizationHeader))
+            {
+                return AuthenticateResult.Fail("Invalid Authorization Header");
+            }
+
+            var authHeader = AuthenticationHeaderValue.Parse(authorizationHeader.ToString());
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter??"");
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':', 2);
             var username = credentials[0];
             var password = credentials[1];
-
 
             if (AuthenticationManager.CheckUserCredentials(username, password))
             {
                 var claims = new[]
                 {
                 new Claim(ClaimTypes.Name, username),
-                };
+            };
                 var identity = new ClaimsIdentity(claims, Scheme.Name);
                 var principal = new ClaimsPrincipal(identity);
                 return AuthenticateResult.Success(new AuthenticationTicket(principal, Scheme.Name));
@@ -59,5 +70,5 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         }
     }
 
-    
+
 }

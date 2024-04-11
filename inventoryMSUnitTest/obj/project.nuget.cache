@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t16v3yVJyURbr1gUv4DR4jEStXVVh4iDcLVa5Z9qoAS+jSv3T/S6kUWWpZYem3dTx3R+HaS1qYnv+Fkdyp5Q0Q==",
+  "dgSpecHash": "BGpfCInHTrXvFSJNKQadahy+05GQ373+3gFIhb5UHhP2dsQLzadWQyEpJdwtetEmIGm7hSzIkvkK9dcWHodd3g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
+  "projectFilePath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
