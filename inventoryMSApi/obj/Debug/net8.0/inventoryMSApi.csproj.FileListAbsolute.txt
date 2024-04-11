@@ -63,9 +63,9 @@ C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\static
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.inventoryMSApi.props
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\scopedcss\bundle\inventoryMSApi.styles.css
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventor.1B130A3B.Up2Date
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventoryMSApi.dll
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\refint\inventoryMSApi.dll
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventoryMSApi.pdb
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventoryMSApi.genruntimeconfig.cache
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\ref\inventoryMSApi.dll
-C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventor.1B130A3B.Up2Date
