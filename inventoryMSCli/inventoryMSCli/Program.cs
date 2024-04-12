@@ -11,8 +11,7 @@ namespace inventoryMSCli
         /// Entry point of the application.
         /// </summary>
         static async Task Main(string[] args)
-        {
-
+        { 
             Task cliTask = Task.Run(() => MainPage.Run());
             StartProcess();
             await cliTask;

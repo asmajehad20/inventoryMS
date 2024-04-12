@@ -1,7 +1,5 @@
 ﻿
 using inventoryMSLogic.src.DataAccessLayer;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
 using System.Text.Json;
 
 namespace inventoryMSLogic.src.BusinessLogicLayer
@@ -13,6 +11,31 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
     {
         public InventoryManager() { }
         static readonly InventoryRepository ProductData = new();
+
+        /// <summary>
+        /// Checks if a product exists in the inventory.
+        /// </summary>
+        /// <param name="keyword">The keyword to identify the product.</param>
+        /// <returns>True if the product exists, otherwise false.</returns>
+        public static bool CheckIfProductExists(string keyword)
+        {
+            return ProductData.ProductExists(keyword);
+        }
+
+        /// <summary>
+        /// Retrieves information of a specific product from the inventory.
+        /// </summary>
+        /// <param name="keyword">The keyword to identify the product.</param>
+        /// <returns>The product matching the provided keyword.</returns>
+        public static Product? GetProduct(string keyword)
+        {
+            if (!CheckIfProductExists(keyword))
+            {
+                throw new Exception("product not found");
+            }
+
+            return ProductData.GetProduct(keyword);
+        }
 
         /// <summary>
         /// Retrieves information of all products from the inventory.
@@ -51,7 +74,6 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
                 throw new Exception("Product already exists with the same name.");
             }
 
-
             if (CheckIfProductExists(barcode))
             {
                 throw new Exception("Product already exists with the same barcode.");
@@ -67,7 +89,6 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
                 CategoryName = category
             };
 
-
             if (ProductData.AddProduct(product))
             {
                 return product;
@@ -76,8 +97,6 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             {
                 throw new Exception("Failed to add product.");
             }
-
-
         }
     
         /// <summary>
@@ -110,7 +129,6 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             quantity = quantity == 0 ? storedProduct.Quantity : quantity;
             status ??= storedProduct.Status;
             category ??= storedProduct.CategoryName;
-
             
             if (ProductData.UpdateProduct(ProductId, name, barcode, price, quantity, status, category))
             {
@@ -120,52 +138,24 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             {
                 return false;
             }
-
-        }
-
-
-
-        /// <summary>
-        /// Checks if a product exists in the inventory.
-        /// </summary>
-        /// <param name="keyword">The keyword to identify the product.</param>
-        /// <returns>True if the product exists, otherwise false.</returns>
-        public static bool CheckIfProductExists(string keyword)
-        {
-            return ProductData.ProductExists(keyword);
         }
 
         /// <summary>
-        /// Retrieves all categories from the inventory.
+        /// Deletes a product from the inventory.
         /// </summary>
-        /// <returns>An array of strings representing all categories.</returns>
-        public static string[] GetCategories()
+        /// <param name="keyword">The keyword to identify the product to be deleted.</param>
+        public static bool DeleteProduct(string keyword)
         {
-            return ProductData.GetAllCategories();
-        }
-
-        /// <summary>
-        /// Retrieves all categories from the inventory along with their IDs.
-        /// </summary>
-        /// <returns>A dictionary containing category IDs and their corresponding names.</returns>
-        public static Dictionary<int, string> GetAllCategories()
-        {
-            List<string> categoriesList = ProductData.GetAllCategories().ToList();
-
-            Dictionary<int, string> categories = [];
-
-            for (int i = 0; i < categoriesList.Count; i++)
+            if (ProductData.ProductExists(keyword) && ProductData.DeleteProduct(keyword))
             {
-                categories.Add(i + 1, categoriesList[i]);
+                return true;
             }
-
-            foreach (var cat in categories)
+            else
             {
-                Console.WriteLine($"> {cat.Key}  {cat.Value}");
+                throw new Exception("failed to delete product");
             }
-
-            return categories;
         }
+
 
         /// <summary>
         /// Retrieves status information of a product from the inventory.
@@ -178,38 +168,6 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
 
             Console.WriteLine("Products:");
             Console.WriteLine(JsonSerializer.Serialize(products, new JsonSerializerOptions { WriteIndented = true }));
-        }
-
-        /// <summary>
-        /// Deletes a product from the inventory.
-        /// </summary>
-        /// <param name="keyword">The keyword to identify the product to be deleted.</param>
-        public static bool DeleteProduct(string keyword)
-        {
-            if(ProductData.ProductExists(keyword) && ProductData.DeleteProduct(keyword)) 
-            {
-                return true;
-            }
-            else 
-            {
-                throw new Exception("failed to delete product");
-            }
-        }
-
-
-        /// <summary>
-        /// Searches for products in the inventory based on a keyword.
-        /// </summary>
-        /// <param name="keyword">The keyword to search for.</param>
-        /// <returns>An array of Product objects matching the search criteria.</returns>
-        public static Product[] Search(string keyword)
-        {
-            string JSONproducts = ProductData.Search(keyword);
-            Product[] products = JsonSerializer.Deserialize<Product[]>(JSONproducts) ?? [];
-
-            return products;
-           
-
         }
 
         /// <summary>
@@ -228,18 +186,49 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         }
 
         /// <summary>
-        /// Retrieves information of a specific product from the inventory.
+        /// Searches for products in the inventory based on a keyword.
         /// </summary>
-        /// <param name="keyword">The keyword to identify the product.</param>
-        /// <returns>The product matching the provided keyword.</returns>
-        public static Product? GetProduct(string keyword)
+        /// <param name="keyword">The keyword to search for.</param>
+        /// <returns>An array of Product objects matching the search criteria.</returns>
+        public static Product[] Search(string keyword)
         {
-            if (!CheckIfProductExists(keyword))
+            return ProductData.Search(keyword);
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        //categories//
+
+        /// <summary>
+        /// Retrieves all categories from the inventory.
+        /// </summary>
+        /// <returns>An array of strings representing all categories.</returns>
+        public static string[] GetCategories()
+        {
+            return ProductData.GetAllCategories();
+        }
+
+        /// <summary>
+        /// Retrieves all categories from the inventory.
+        /// </summary>
+        /// <returns>A dictionary containing category number and their corresponding names.</returns>
+        public static Dictionary<int, string> GetAllCategories()
+        {
+            List<string> categoriesList = ProductData.GetAllCategories().ToList();
+
+            Dictionary<int, string> categories = [];
+
+            for (int i = 0; i < categoriesList.Count; i++)
             {
-                throw new Exception("product not found");
+                categories.Add(i + 1, categoriesList[i]);
             }
 
-            return ProductData.GetProduct(keyword);
+            foreach (var cat in categories)
+            {
+                Console.WriteLine($"> {cat.Key}  {cat.Value}");
+            }
+
+            return categories;
         }
 
         /// <summary>
@@ -265,6 +254,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
                 ProductData.DeleteCategory(roleName);
             }
         }
+
     }
 
 
