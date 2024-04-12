@@ -234,24 +234,44 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <summary>
         /// Adds a new category to the inventory.
         /// </summary>
-        /// <param name="roleName">The name of the category to be added.</param>
-        public static void AddCategory(string roleName)
+        /// <param name="category">The name of the category to be added.</param>
+        public static void AddCategory(string category)
         {
-            if (string.IsNullOrEmpty(roleName) && !ProductData.CategoryExists(roleName))
+            if (!string.IsNullOrEmpty(category))
             {
-                ProductData.AddCategory(roleName);
+                if (!ProductData.AddCategory(category))
+                {
+                    Console.WriteLine("failed to add category");
+                }
             }
+            else
+            {
+                Console.WriteLine("failed to add category");
+            }
+
         }
 
         /// <summary>
         /// Deletes a category from the inventory.
         /// </summary>
-        /// <param name="roleName">The name of the category to be deleted.</param>
-        public static void DeleteCategory(string roleName)
+        /// <param name="category">The name of the category to be deleted.</param>
+        public static void DeleteCategory(string category)
         {
-            if (string.IsNullOrEmpty(roleName) && !ProductData.CategoryExists(roleName))
+            if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
             {
-                ProductData.DeleteCategory(roleName);
+                ProductData.DeleteCategory(category);
+            }
+        }
+
+        public static void UpdateCategory(string category, string NewNmae)
+        {
+            if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
+            {
+                string categoryID = ProductData.GetCategoryID(category);
+                if(!ProductData.UpdateCategory(categoryID, NewNmae))
+                {
+                    throw new Exception("Failed to update category.");
+                }
             }
         }
 

@@ -37,7 +37,7 @@ namespace inventoryMSCli.CLI
             Console.WriteLine("> u or users       <show user options>");
             Console.WriteLine("> p or products    <show products options>");
             Console.WriteLine("> roles            <show roles options>");
-            Console.WriteLine("> category         <show category options>");
+            Console.WriteLine("> categories        <show category options>");
             Console.WriteLine("-------------");
 
             Console.WriteLine("> c      <Clear Screen>");
@@ -75,7 +75,7 @@ namespace inventoryMSCli.CLI
                         RolesMenuRun();
                         break;
 
-                    case "category":
+                    case "categories":
                         CategoryMenuRun();
                         break;
 
@@ -356,9 +356,10 @@ namespace inventoryMSCli.CLI
             Console.WriteLine("--------------------------------");
             Console.WriteLine("Options:");
 
-            Console.WriteLine("> all        <show all roles>");
-            Console.WriteLine("> add         <add a new role>");
-            Console.WriteLine("> delete      <delete role>");
+            Console.WriteLine("> all         <show all categories>");
+            Console.WriteLine("> add         <add a new category>");
+            Console.WriteLine("> update      <update a category>");
+            Console.WriteLine("> delete      <delete category>");
 
             Console.WriteLine("-------------");
 
@@ -390,10 +391,19 @@ namespace inventoryMSCli.CLI
 
                         break;
 
-                    case "add ":
+                    case "add":
                         Console.Write("Category Name:");
-                        InventoryManager.AddCategory(Console.ReadLine() ?? "");
+                        string NewCategoryName = Console.ReadLine() ?? "";
+                        InventoryManager.AddCategory(NewCategoryName);
                         
+                        break;
+
+                    case "update":
+                        Console.Write("Choose the category you want to update:");
+                        string category = UserPage.SetCategory();
+                        Console.Write("category new name:");
+                        string newName = Console.ReadLine() ?? "";
+                        InventoryManager.UpdateCategory(category, newName);
                         break;
 
                     case "delete":

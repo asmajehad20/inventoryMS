@@ -273,7 +273,6 @@ namespace inventoryMSCli.CLI
                 return;
             }
 
-
             //get product name
             Console.Write("Product Name: ");
             string ProductName = Console.ReadLine() ?? "";

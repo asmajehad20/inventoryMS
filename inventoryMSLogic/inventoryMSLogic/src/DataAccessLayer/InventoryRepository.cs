@@ -1,5 +1,7 @@
 ﻿
 using Npgsql;
+using System.Diagnostics;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 
 namespace inventoryMSLogic.src.DataAccessLayer
@@ -37,10 +39,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
 
         //////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Checks if a product exists in the database based on the provided keyword (barcode or product name).
+        /// Checks whether a product exists in the database based on the provided keyword, which can be either the product name or barcode.
         /// </summary>
-        /// <param name="Keyword">The barcode or product name to search for.</param>
+        /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>True if the product exists, otherwise false.</returns>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
+
         public bool ProductExists(string Keyword)
         {
             try
@@ -109,10 +113,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
         }
 
         /// <summary>
-        /// Retrieves information about a product based on the provided keyword (barcode or product name).
+        /// Retrieves product details from the database based on the provided keyword, which can be either the product name or barcode.
         /// </summary>
-        /// <param name="Keyword">The barcode or product name to search for.</param>
-        /// <returns>A Product object containing information about the product, or null if not found.</returns>
+        /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
+        /// <returns>A <see cref="Product"/> object containing details of the found product, or null if not found.</returns>
+        /// <exception cref="Exception">Thrown when an error occurs during database interaction.</exception>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
         public Product? GetProduct(string Keyword)
         {
             Product? product = null;
@@ -161,9 +167,10 @@ namespace inventoryMSLogic.src.DataAccessLayer
         }
 
         /// <summary>
-        /// Retrieves information of all products from the database.
+        /// Retrieves details of all products from the database.
         /// </summary>
-        /// <returns>A List of all Products.</returns>
+        /// <returns>An array of <see cref="Product"/> objects containing details of all products.</returns>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
         public Product[] GetAllProducts()
         {
             List<Product> ProductsList = [];
@@ -209,7 +216,9 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <summary>
         /// Adds a new product to the database.
         /// </summary>
-        /// <param name="product">The product to be added.</param>
+        /// <param name="product">The <see cref="Product"/> object containing details of the product to be added.</param>
+        /// <returns>True if the product is successfully added, otherwise false.</returns>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
         public bool AddProduct(Product product)
         {
 
@@ -295,9 +304,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
         }
 
         /// <summary>
-        /// Deletes a product from the database based on the provided keyword (barcode or product name).
+        /// Deletes a product from the database based on the provided keyword, which can be either the product name or barcode.
         /// </summary>
-        /// <param name="keyword">The barcode or product name of the product to be deleted.</param>
+        /// <param name="keyword">The keyword to identify the product to be deleted, which can be either the product name or barcode.</param>
+        /// <returns>True if the product is successfully deleted, otherwise false.</returns>
+        /// <exception cref="Exception">Thrown when an error occurs during database interaction.</exception>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
         public bool DeleteProduct(string keyword)
         {
             try
@@ -539,30 +551,31 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Adds a new category to the database.
         /// </summary>
         /// <param name="name">The name of the category to be added.</param>
-        public void AddCategory(string name)
+        public bool AddCategory(string name)
         {
 
             try
             {
                 dbConnection.OpenConnection();
-                string query = "INSERT category_id, name INTO categories VALUES uuid_generate_v4(), @name ; ";
+                string query = "INSERT INTO categories (category_id, name) VALUES (uuid_generate_v4(), @Name);";
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
-                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@Name", name);
                 cmd.ExecuteNonQuery();
-
+                return true;
 
             }
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error :: adding category failed: {ex.Message}");
+                return false;
             }
             finally
             {
                 dbConnection.CloseConnection();
             }
 
-            return;
+            
         }
 
         /// <summary>
@@ -574,7 +587,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
             try
             {
                 dbConnection.OpenConnection();
-                string query = "DELETE FROM categories WHERE name ILIKE @name";
+                string query = "DELETE FROM categories WHERE name ILIKE @name;";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, dbConnection.Connection))
                 {
@@ -585,6 +598,66 @@ namespace inventoryMSLogic.src.DataAccessLayer
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error deleting category: {ex.Message}");
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+        }
+
+        public string GetCategoryID(string Keyword)
+        {
+            try
+            {
+                dbConnection.OpenConnection();
+                string query = "SELECT categories.category_id FROM categories WHERE name ILIKE @Keyword; ";
+
+                using NpgsqlCommand cmd = new(query, dbConnection.Connection);
+                cmd.Parameters.AddWithValue("@Keyword", Keyword);
+                using NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return reader.GetGuid(0).ToString();
+                }
+                else
+                {
+                    Console.WriteLine("category not found.");
+                    throw new Exception("category id not found.");
+                }
+
+            }
+            catch (NpgsqlException ex)
+            {
+                Console.WriteLine($"Error :: searching for category failed: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+
+        }
+
+        public bool UpdateCategory(string id, string name)
+        {
+            try
+            {
+                dbConnection.OpenConnection();
+                string query = "UPDATE categories SET name = @Name WHERE category_id = @id;";
+
+                using NpgsqlCommand cmd = new(query, dbConnection.Connection);
+                cmd.Parameters.AddWithValue("@id", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(id));
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.ExecuteNonQuery();
+
+                Console.WriteLine($"product updated");
+                return true;
+            }
+            catch (NpgsqlException ex)
+            {
+                Console.WriteLine($"Error :: updating category failed : {ex.Message}");
+                return false;
             }
             finally
             {
