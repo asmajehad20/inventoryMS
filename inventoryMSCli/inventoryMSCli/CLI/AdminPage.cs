@@ -385,10 +385,8 @@ namespace inventoryMSCli.CLI
                 {
 
                     case "all":
-                        string[] categories = InventoryManager.GetCategories();
-                        Console.WriteLine("System categories:");
-                        Console.WriteLine(JsonSerializer.Serialize(categories, new JsonSerializerOptions { WriteIndented = true }));
-
+                        InventoryManager.GetAllCategories();
+                        
                         break;
 
                     case "add":

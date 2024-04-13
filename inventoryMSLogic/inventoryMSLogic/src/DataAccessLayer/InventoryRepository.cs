@@ -85,8 +85,8 @@ namespace inventoryMSLogic.src.DataAccessLayer
             }
             catch (NpgsqlException ex)
             {
-                Console.WriteLine($"Error :: searching for product failed: {ex.Message}");
-                throw;
+                Console.WriteLine($"Error :: searching for product by ID failed: {ex.Message}");
+                return "";
             }
             finally
             {
@@ -136,7 +136,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error :: searching for product failed: {ex.Message}");
-                throw new Exception("Error searching for product", ex);
             }
             finally
             {
@@ -347,13 +346,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
             return status;
         }
 
-
         /// <summary>
         /// Retrieves products with the specified status from the database and returns them as JSON.
         /// </summary>
         /// <param name="status">The status of the products to retrieve.</param>
         /// <returns>A JSON string containing information about products with the specified status.</returns>
-        public string GetProductStatus(string status)
+        public Product[] GetProductsByStatus(string status)
         {
             List<Product> ProductsList = [];
 
@@ -382,7 +380,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
                     };
                     ProductsList.Add(product);
                 }
-
             }
             catch (NpgsqlException ex)
             {
@@ -392,10 +389,8 @@ namespace inventoryMSLogic.src.DataAccessLayer
             {
                 dbConnection.CloseConnection(); 
             }
-
-            string jsonProducts = JsonSerializer.Serialize(ProductsList);
             
-            return jsonProducts;
+            return ProductsList.ToArray();
         }
 
         /// <summary>
@@ -416,7 +411,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                        "WHERE products.product_name ILIKE @SearchWord OR " +
                        "products.bar_code = @SearchWord OR " +
                        "products.status ILIKE @SearchWord OR " +
-                       "categories.name ILIKE @SearchWord"; 
+                       "categories.name ILIKE @SearchWord;"; 
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@SearchWord", "%" + SearchWord + "%");// wildcard search
@@ -465,9 +460,9 @@ namespace inventoryMSLogic.src.DataAccessLayer
             try
             {
                 dbConnection.OpenConnection();
-                string query = "SELECT COUNT(*) FROM categories WHERE name ILIKE @name";
+                string query = "SELECT COUNT(*) FROM categories WHERE name ILIKE @name;";
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, dbConnection.Connection))
+                using (NpgsqlCommand cmd = new(query, dbConnection.Connection))
                 {
                     cmd.Parameters.AddWithValue("@name", name);
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
@@ -535,6 +530,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.ExecuteNonQuery();
+                Console.WriteLine("category added");
                 return true;
 
             }
@@ -553,22 +549,23 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Deletes a category from the database.
         /// </summary>
         /// <param name="name">The name of the category to be deleted.</param>
-        public void DeleteCategory(string name)
+        public bool DeleteCategory(string name)
         {
             try
             {
                 dbConnection.OpenConnection();
                 string query = "DELETE FROM categories WHERE name ILIKE @name;";
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, dbConnection.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@name", name);
-                    cmd.ExecuteNonQuery();
-                }
+                using NpgsqlCommand cmd = new(query, dbConnection.Connection);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("category deleted");
+                return true;
             }
             catch (NpgsqlException ex)
             {
-                Console.WriteLine($"Error deleting category: {ex.Message}");
+                Console.WriteLine($"Error :: deleting category failed: {ex.Message}");
+                return false;
             }
             finally
             {
@@ -603,11 +600,14 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 Console.WriteLine($"Error :: searching for category failed: {ex.Message}");
                 throw;
             }
+            catch(Exception e)
+            {
+                Console.WriteLine($"category not found : {e.Message}");
+            }
             finally
             {
                 dbConnection.CloseConnection();
             }
-
         }
 
         public bool UpdateCategory(string id, string name)
