@@ -1,7 +1,5 @@
 ﻿
 using Npgsql;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
 using System.Text.Json;
 
 namespace inventoryMSLogic.src.DataAccessLayer
@@ -25,17 +23,8 @@ namespace inventoryMSLogic.src.DataAccessLayer
     public class InventoryRepository
     {
         private readonly DatabaseConnection dbConnection;
-
-        public InventoryRepository() 
-        {
-            dbConnection = new DatabaseConnection();
-        }
-
-        public InventoryRepository(DatabaseConnection connection)
-        {
-            dbConnection = connection;
-        }
-
+        public InventoryRepository(){ dbConnection = new DatabaseConnection(); }
+        public InventoryRepository(DatabaseConnection connection){ dbConnection = connection; }
 
         //////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -44,7 +33,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>True if the product exists, otherwise false.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
-
         public bool ProductExists(string Keyword)
         {
             try
@@ -56,19 +44,16 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 cmd.Parameters.AddWithValue("@Keyword", Keyword);
 
                 return (bool)(cmd.ExecuteScalar() ?? false);
-
-
             }
             catch (NpgsqlException ex)
             {
-                Console.WriteLine($"Error :: searching for product failed: {ex.Message}");
+                Console.WriteLine($"Error :: checking if product exsist failed: {ex.Message}");
                 return false;
             }
             finally
             {
                 dbConnection.CloseConnection();
             }
-
         }
 
         /// <summary>
@@ -76,7 +61,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>The product ID as a string if found.</returns>
-        /// <exception cref="Exception">Thrown when the product ID is not found in the database.</exception>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
         public string GetProductID(string Keyword)
         {
@@ -96,9 +80,8 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 else
                 {
                     Console.WriteLine("Product not found.");
-                    throw new Exception("Product id not found.");
+                    return "";
                 }
-
             }
             catch (NpgsqlException ex)
             {
@@ -109,7 +92,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
             {
                 dbConnection.CloseConnection();
             }
-
         }
 
         /// <summary>
@@ -553,7 +535,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="name">The name of the category to be added.</param>
         public bool AddCategory(string name)
         {
-
             try
             {
                 dbConnection.OpenConnection();
@@ -573,9 +554,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
             finally
             {
                 dbConnection.CloseConnection();
-            }
-
-            
+            }      
         }
 
         /// <summary>
