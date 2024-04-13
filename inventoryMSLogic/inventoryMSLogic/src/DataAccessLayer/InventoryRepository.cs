@@ -99,7 +99,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>A <see cref="Product"/> object containing details of the found product, or null if not found.</returns>
-        /// <exception cref="Exception">Thrown when an error occurs during database interaction.</exception>
         /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
         public Product? GetProduct(string Keyword)
         {
@@ -110,7 +109,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 string query = "SELECT products.product_name, products.bar_code, products.price, products.quantity, products.status, categories.name " +
                     "FROM products " +
                     "INNER JOIN categories ON products.category_id = categories.category_id " +
-                    "WHERE product_name ILIKE @Keyword OR bar_code = @Keyword";
+                    "WHERE product_name ILIKE @Keyword OR bar_code = @Keyword;";
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@Keyword", Keyword);
@@ -133,7 +132,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 {
                     Console.WriteLine("Product not found.");
                 }
-
             }
             catch (NpgsqlException ex)
             {
@@ -144,7 +142,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
             {
                 dbConnection.CloseConnection();
             }
-
             return product;
         }
 
@@ -181,7 +178,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
 
                     ProductsList.Add(product);
                 }
-
             }
             catch (NpgsqlException ex)
             {
@@ -203,7 +199,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
         public bool AddProduct(Product product)
         {
-
             try
             {
                 dbConnection.OpenConnection();
@@ -248,7 +243,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
         public bool UpdateProduct(string id, string name, string barcode, int price, int quantity, string status, string category)
         {
-
             try
             {
                 dbConnection.OpenConnection();
@@ -259,7 +253,6 @@ namespace inventoryMSLogic.src.DataAccessLayer
                        "status = @status, " +
                        "category_id = (SELECT category_id FROM categories WHERE name = @categoryName) " +
                        "WHERE product_id = @id;";
-
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@id", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(id));
@@ -309,8 +302,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error :: failed to delete product : {ex.Message}");
-                throw new Exception("failed to delete product");
-
+                return false;
             }
             finally
             {
@@ -332,7 +324,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 string query = "SELECT status, quantity FROM products " +
                     "WHERE bar_code = @keyword or product_name ILIKE @keyword;";
 
-                using NpgsqlCommand cmd = new NpgsqlCommand(query, dbConnection.Connection);
+                using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@keyword", keyword);
                 using NpgsqlDataReader reader = cmd.ExecuteReader();
 

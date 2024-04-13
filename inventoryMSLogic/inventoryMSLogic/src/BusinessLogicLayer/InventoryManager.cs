@@ -163,8 +163,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="keyword">The keyword to identify the product.</param>
         public static void StatusTracking(string keyword)
         {
-            string JSONproducts = ProductData.GetProductStatus(keyword);
-            Product[] products = JsonSerializer.Deserialize<Product[]>(JSONproducts) ?? [];
+            Product[] products = ProductData.GetProductsByStatus(keyword);
 
             Console.WriteLine("Products:");
             Console.WriteLine(JsonSerializer.Serialize(products, new JsonSerializerOptions { WriteIndented = true }));
