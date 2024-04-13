@@ -573,6 +573,14 @@ namespace inventoryMSLogic.src.DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Retrieves the category ID from the database based on the provided category name.
+        /// </summary>
+        /// <param name="Keyword">The category name to search for.</param>
+        /// <returns>The category ID as a string if found.</returns>
+        /// <exception cref="Exception">Thrown when the category ID is not found in the database.</exception>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
+
         public string GetCategoryID(string Keyword)
         {
             try
@@ -603,6 +611,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
             catch(Exception e)
             {
                 Console.WriteLine($"category not found : {e.Message}");
+                throw;
             }
             finally
             {
@@ -610,6 +619,13 @@ namespace inventoryMSLogic.src.DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Updates the name of a category in the database.
+        /// </summary>
+        /// <param name="id">The unique identifier of the category to be updated.</param>
+        /// <param name="name">The new name of the category.</param>
+        /// <returns>True if the category is successfully updated, otherwise false.</returns>
+        /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
         public bool UpdateCategory(string id, string name)
         {
             try
