@@ -102,7 +102,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="roleName">The name of the role to be added.</param>
         public static void AddRole(string roleName)
         {
-            if (string.IsNullOrEmpty(roleName) && !UserData.RoleExists(roleName))
+            if (!string.IsNullOrEmpty(roleName) && !UserData.RoleExists(roleName))
             {
                 try
                 {
@@ -123,7 +123,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="roleName">The name of the role to be deleted.</param>
         public static void DeleteRole(string roleName)
         {
-            if (string.IsNullOrEmpty(roleName) && !UserData.RoleExists(roleName))
+            if (!string.IsNullOrEmpty(roleName) && UserData.RoleExists(roleName))
             {
                 try
                 {
