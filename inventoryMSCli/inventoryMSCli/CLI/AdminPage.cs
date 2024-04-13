@@ -59,8 +59,8 @@ namespace inventoryMSCli.CLI
             {
                 DisplayAdminMenu();
 
-                var UserCommand = Console.ReadLine();
-                switch (UserCommand)
+                string UserCommand = Console.ReadLine() ?? "";
+                switch (UserCommand.Trim())
                 {
 
                     case "u" or "users":
@@ -127,8 +127,8 @@ namespace inventoryMSCli.CLI
             {
                 UsersOptionsMenu();
 
-                var UserCommand = Console.ReadLine();
-                switch (UserCommand)
+                string UserCommand = Console.ReadLine() ?? "";
+                switch (UserCommand.Trim())
                 {
 
                     case "all":
@@ -204,8 +204,8 @@ namespace inventoryMSCli.CLI
             {
                 ProductsOptionsMenu();
 
-                var UserCommand = Console.ReadLine();
-                switch (UserCommand)
+                string UserCommand = Console.ReadLine() ?? "";
+                switch (UserCommand.Trim())
                 {
 
                     case "all":
@@ -311,8 +311,8 @@ namespace inventoryMSCli.CLI
             {
                 RolesOptionsMenu();
 
-                var UserCommand = Console.ReadLine();
-                switch (UserCommand)
+                string UserCommand = Console.ReadLine() ?? "";
+                switch (UserCommand.Trim())
                 {
 
                     case "all":
@@ -323,7 +323,7 @@ namespace inventoryMSCli.CLI
                         
                         break;
 
-                    case "add ":
+                    case "add":
                         Console.Write("Role Name:");
                         UserManager.AddRole(Console.ReadLine()??"");
                         break;
@@ -383,8 +383,8 @@ namespace inventoryMSCli.CLI
             {
                 CategoryOptionsMenu();
 
-                var UserCommand = Console.ReadLine();
-                switch (UserCommand)
+                string UserCommand = Console.ReadLine() ?? "";
+                switch (UserCommand.Trim())
                 {
 
                     case "all":

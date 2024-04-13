@@ -98,8 +98,9 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             {
                 throw new Exception("Failed to add product.");
             }
+
         }
-    
+
         /// <summary>
         /// Updates product information based on the provided parameters.
         /// If a parameter is null or empty, it retains the existing value.
@@ -237,18 +238,14 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="category">The name of the category to be added.</param>
         public static void AddCategory(string category)
         {
-            if (!string.IsNullOrEmpty(category))
+            if (string.IsNullOrEmpty(category))
             {
-                if (!ProductData.AddCategory(category))
-                {
-                    Console.WriteLine("failed to add category");
-                }
+                throw new Exception("cant add an empty category");
             }
-            else
+            if (!ProductData.AddCategory(category))
             {
-                Console.WriteLine("failed to add category");
+                throw new Exception("adding a category failed");
             }
-
         }
 
         /// <summary>
@@ -259,10 +256,18 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         {
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
             {
-                ProductData.DeleteCategory(category); 
+                if (!ProductData.DeleteCategory(category))
+                {
+                    throw new Exception("Failed to delete category.");
+                }
             }
         }
 
+        /// <summary>
+        /// updates a category from the inventory.
+        /// </summary>
+        /// <param name="category">The name of the category to be updated.</param>
+        /// <param name="NewNmae">The new updated name of the category.</param>
         public static void UpdateCategory(string category, string NewNmae)
         {
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
