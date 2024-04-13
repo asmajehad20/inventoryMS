@@ -37,7 +37,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         public void CloseConnection()
         {
             try
-            {  
+            {
                 Connection.Close();
             }
             catch (NpgsqlException ex)

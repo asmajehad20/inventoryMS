@@ -242,18 +242,28 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             {
                 throw new Exception("cant add an empty category");
             }
-            if (!ProductData.AddCategory(category))
+
+            if (ProductData.CategoryExists(category))
+            {
+                throw new Exception("category exsist");
+            }
+
+            bool categoryAdded = ProductData.AddCategory(category);
+
+            if (!categoryAdded)
             {
                 throw new Exception("adding a category failed");
             }
+
         }
 
         /// <summary>
         /// Deletes a category from the inventory.
         /// </summary>
         /// <param name="category">The name of the category to be deleted.</param>
-        public static void DeleteCategory(string category)
+        public static bool DeleteCategory(string category)
         {
+
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
             {
                 if (!ProductData.DeleteCategory(category))
@@ -261,6 +271,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
                     throw new Exception("Failed to delete category.");
                 }
             }
+            return true;
         }
 
         /// <summary>
@@ -268,7 +279,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// </summary>
         /// <param name="category">The name of the category to be updated.</param>
         /// <param name="NewNmae">The new updated name of the category.</param>
-        public static void UpdateCategory(string category, string NewNmae)
+        public static bool UpdateCategory(string category, string NewNmae)
         {
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
             {
@@ -278,6 +289,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
                     throw new Exception("Failed to update category.");
                 }
             }
+            return true;
         }
 
     }

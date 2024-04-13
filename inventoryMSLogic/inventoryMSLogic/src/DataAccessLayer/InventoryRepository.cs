@@ -487,7 +487,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <returns>A JSON string containing information about all categories.</returns>
         public string[] GetAllCategories()
         {
-            List<string> categories = [];
+            List<string> categories = []; // Correct list initialization
 
             try
             {
@@ -499,22 +499,23 @@ namespace inventoryMSLogic.src.DataAccessLayer
 
                 while (reader.Read())
                 {
-
                     categories.Add(reader.GetString(0));
                 }
-
             }
             catch (NpgsqlException ex)
             {
                 Console.WriteLine($"Error :: retrieving categories failed: {ex.Message}");
+                // Handle the exception as per your application's requirements
+                // You might want to throw the exception here to propagate it
             }
             finally
             {
-                dbConnection.CloseConnection(); 
+                dbConnection.CloseConnection(); // Ensure connection is closed
             }
 
             return categories.ToArray();
         }
+
 
         /// <summary>
         /// Adds a new category to the database.

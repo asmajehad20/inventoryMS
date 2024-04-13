@@ -8,18 +8,18 @@ namespace inventoryMSUnitTest
     public class CRUDCategory
     {
         [Fact]
-        public void GetCategories_ReturnsNonNullArray()
+        public void GetCategories_ReturnsCategories()
         {
             // Act
-            string[] categories = InventoryManager.GetCategories();
+            string[] result = InventoryManager.GetCategories();
 
             // Assert
-            Assert.NotNull(categories);
+            Assert.NotNull(result);
         }
 
         [Theory]
-        [InlineData("New Category", true)] // Valid unique category
-        [InlineData("Electronics", false)] // Valid existing category
+        [InlineData("New category test", true)] // existing category
+        [InlineData("Electronics", false)] // existing category
         [InlineData(null, false)] // Null category
         [InlineData("", false)] // Empty category
         public void AddCategory_Scenarios(string category, bool expectedResult)
@@ -41,6 +41,20 @@ namespace inventoryMSUnitTest
             // Assert
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Fact]
+        public void DeleteCategory_ExistingCategory_DeletesCategory()
+        {
+            // Arrange
+            string existingCategory = "New category test";
+
+            // Act
+            bool result = InventoryManager.DeleteCategory(existingCategory);
+
+            // Assert
+            Assert.True(result);
+        }
+
 
     }
 

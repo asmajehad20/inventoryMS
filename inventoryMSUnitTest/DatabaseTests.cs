@@ -18,6 +18,7 @@ namespace inventoryMSUnitTest
                 try
                 {
                     connection.Open();
+                    connection.Close();
                 }
                 catch (NpgsqlException ex)
                 {
@@ -28,6 +29,9 @@ namespace inventoryMSUnitTest
 
             // Assert
             Assert.True(true, "Database connection succeeded.");
+
+
         }
+
     }
 }
