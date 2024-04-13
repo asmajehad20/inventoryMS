@@ -23,10 +23,11 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         }
 
         /// <summary>
-        /// Retrieves information of a specific product from the inventory.
+        /// Retrieves product details from the database based on the provided keyword, which can be either the product name or barcode.
         /// </summary>
-        /// <param name="keyword">The keyword to identify the product.</param>
-        /// <returns>The product matching the provided keyword.</returns>
+        /// <param name="keyword">The keyword to search for, which can be either the product name or barcode.</param>
+        /// <returns>A <see cref="Product"/> object containing details of the found product, or null if not found.</returns>
+        /// <exception cref="Exception">Thrown when the product is not found.</exception>
         public static Product? GetProduct(string keyword)
         {
             if (!CheckIfProductExists(keyword))
@@ -258,7 +259,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         {
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
             {
-                ProductData.DeleteCategory(category);
+                ProductData.DeleteCategory(category); 
             }
         }
 

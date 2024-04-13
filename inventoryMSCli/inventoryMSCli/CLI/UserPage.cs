@@ -126,7 +126,9 @@ namespace inventoryMSCli.CLI
                         string Password = MainPage.GetPassword();
                         if (Password == "-exit" || Password == "exit") return;
                         UserManager.DeleteUser(UserName, Password);
-                        return;
+                        _ = new MainPage();
+                        MainPage.Run();
+                        break;
 
 
                     case "c":
