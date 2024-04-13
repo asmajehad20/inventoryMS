@@ -250,17 +250,17 @@ namespace inventoryMSLogic.src.DataAccessLayer
             try
             {
                 dbConnection.OpenConnection();
-                string query = "INSERT role_id, name INTO roles VALUES uuid_generate_v4(), @name ; ";
+                string query = "INSERT role_id, name INTO roles VALUES uuid_generate_v4(), @Name ; ";
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
-                cmd.Parameters.AddWithValue("@name", rolename);
+                cmd.Parameters.AddWithValue("@Name", rolename);
                 cmd.ExecuteNonQuery();
                 return true;
                
             }
             catch (NpgsqlException ex)
             {
-                Console.WriteLine($"Error :: retrieving roles failed: {ex.Message}");
+                Console.WriteLine($"Error :: adding roles failed: {ex.Message}");
                 return false;
             }
             finally

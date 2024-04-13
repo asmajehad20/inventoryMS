@@ -108,7 +108,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 dbConnection.OpenConnection();
                 string query = "SELECT products.product_name, products.bar_code, products.price, products.quantity, products.status, categories.name " +
                     "FROM products " +
-                    "INNER JOIN categories ON products.category_id = categories.category_id " +
+                    "LEFT JOIN categories ON products.category_id = categories.category_id " +
                     "WHERE product_name ILIKE @Keyword OR bar_code = @Keyword;";
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
@@ -119,12 +119,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 {
                     product = new Product
                     {
-                        Name = reader.GetString(0),
-                        Barcode = reader.GetString(1),
-                        Price = reader.GetInt32(2),
-                        Quantity = reader.GetInt32(3),
-                        Status = reader.GetString(4),
-                        CategoryName = reader.GetString(5)
+                        Name = reader.IsDBNull(0) ? "" : reader.GetString(0),
+                        Barcode = reader.IsDBNull(1) ? "" : reader.GetString(1),
+                        Price = reader.IsDBNull(2) ? 0 : reader.GetInt32(2),
+                        Quantity = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                        Status = reader.IsDBNull(4) ? "" : reader.GetString(4),
+                        CategoryName = reader.IsDBNull(5) ? "" : reader.GetString(5)
                     };
 
                 }
@@ -158,7 +158,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 dbConnection.OpenConnection();
                 string query = "SELECT products.product_name, products.bar_code, products.price, products.quantity, products.status, categories.name " +
                     "FROM products " +
-                    "INNER JOIN categories ON products.category_id = categories.category_id;";
+                    "LEFT JOIN categories ON products.category_id = categories.category_id;";
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 using NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -167,12 +167,12 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 {
                     Product product = new()
                     {
-                        Name = reader.GetString(0),
-                        Barcode = reader.GetString(1),
-                        Price = reader.GetInt32(2),
-                        Quantity = reader.GetInt32(3),
-                        Status = reader.GetString(4),
-                        CategoryName = reader.GetString(5)
+                        Name = reader.IsDBNull(0) ? "" : reader.GetString(0),
+                        Barcode = reader.IsDBNull(1) ? "" : reader.GetString(1),
+                        Price = reader.IsDBNull(2) ? 0 : reader.GetInt32(2),
+                        Quantity = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                        Status = reader.IsDBNull(4) ? "" : reader.GetString(4),
+                        CategoryName = reader.IsDBNull(5) ? "" : reader.GetString(5)
                     };
 
                     ProductsList.Add(product);

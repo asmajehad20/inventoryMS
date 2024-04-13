@@ -62,8 +62,8 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             // Input validation
             if (string.IsNullOrEmpty(name) ||
                 string.IsNullOrEmpty(barcode) ||
-                price <= 0 ||
-                quantity <= 0 ||
+                price < 0 ||
+                quantity < 0 ||
                 string.IsNullOrEmpty(status) ||
                 string.IsNullOrEmpty(category))
             {
@@ -125,13 +125,13 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             string ProductId = ProductData.GetProductID(keyword);
 
             // Replace null values with stored values
-            name ??= storedProduct.Name;
-            barcode ??= storedProduct.Barcode;
+            name = string.IsNullOrEmpty(name) ? storedProduct.Name : name;
+            barcode = string.IsNullOrEmpty(barcode) ? storedProduct.Barcode : barcode;
             price = price == 0 ? storedProduct.Price : price;
             quantity = quantity == 0 ? storedProduct.Quantity : quantity;
-            status ??= storedProduct.Status;
-            category ??= storedProduct.CategoryName;
-            
+            status =  string.IsNullOrEmpty(status) ? storedProduct.Status : status;
+            category = string.IsNullOrEmpty(category) ? storedProduct.CategoryName : category;
+
             if (ProductData.UpdateProduct(ProductId, name, barcode, price, quantity, status, category))
             {
                 return true;
@@ -154,7 +154,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             }
             else
             {
-                throw new Exception("failed to delete product");
+                return true;
             }
         }
 
