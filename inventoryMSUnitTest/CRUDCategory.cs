@@ -18,7 +18,7 @@ namespace inventoryMSUnitTest
         }
 
         [Theory]
-        [InlineData("New category test", true)] // existing category
+        [InlineData("New category5", true)] // existing category
         [InlineData("Electronics", false)] // existing category
         [InlineData(null, false)] // Null category
         [InlineData("", false)] // Empty category
@@ -46,7 +46,7 @@ namespace inventoryMSUnitTest
         public void DeleteCategory_ExistingCategory_DeletesCategory()
         {
             // Arrange
-            string existingCategory = "New category test";
+            string existingCategory = "New category5";
 
             // Act
             bool result = InventoryManager.DeleteCategory(existingCategory);

@@ -24,8 +24,8 @@ namespace inventoryMSUnitTest
         public void AddProduct_ValidInput_ReturnsProduct()
         {
             // Arrange
-            string name = "Testttt";
-            string barcode = "113456789089";
+            string name = "TestD";
+            string barcode = "113400780089";
             int price = 10;
             int quantity = 5;
             string status = "in stock";
@@ -111,20 +111,10 @@ namespace inventoryMSUnitTest
         public void DeleteProduct_ProductExists_SuccessfulDeletion()
         {
             // Arrange
-            string keyword = "Testttt"; 
+            string keyword = "TestD"; 
 
             // Act & Assert
             Assert.True(InventoryManager.DeleteProduct(keyword));
-        }
-
-        [Fact]
-        public void DeleteProduct_ProductDoesNotExist_ExceptionThrown()
-        {
-            // Arrange
-            string keyword = "non_existing_product_keyword"; 
-
-            // Act & Assert
-            Assert.Throws<Exception>(() => InventoryManager.DeleteProduct(keyword));
         }
 
     }

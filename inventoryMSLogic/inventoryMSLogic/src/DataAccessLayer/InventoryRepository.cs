@@ -9,10 +9,10 @@ namespace inventoryMSLogic.src.DataAccessLayer
     /// </summary>
     public class Product
     {
-        public string Name { get; set; } = ""; 
-        public int Price { get; set; }
+        public string Name { get; set; } = "";
+        public int Price { get; set; } = 0;
         public string Barcode { get; set; } = "";
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 0;
         public string Status { get; set; } = "";
         public string CategoryName { get; set; } = "";
     }

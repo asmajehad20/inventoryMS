@@ -62,8 +62,8 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             // Input validation
             if (string.IsNullOrEmpty(name) ||
                 string.IsNullOrEmpty(barcode) ||
-                price < 0 ||
-                quantity < 0 ||
+                price <= 0 ||
+                quantity <= 0 ||
                 string.IsNullOrEmpty(status) ||
                 string.IsNullOrEmpty(category))
             {
