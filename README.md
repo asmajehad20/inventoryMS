@@ -1,6 +1,5 @@
 # inventoryMS
-An inventory management system CLLI application with APIs, designed to track and manage inventory products. It's used to keep track of product in inventoy mainly stock status, keep inventory product organized in categories.
-some features are added in sight of future growth of project to add finantial tracking of products (eg. adding new roles, product price)
+An inventory management system CLI application with APIs, designed to track and manage inventory products. It's used to keep track of product in inventoy mainly stock status, keep inventory product organized in categories.
 
 ## Table of Contents
 
@@ -37,11 +36,11 @@ Follow these steps to install and set up the inventory management system:
 2. **Navigate to the Project Directory**
    cd path-to-inventoryMS\inventory
    start inventory.sln
-4. **Install Dependencies:**
+3. **Install Dependencies:**
    - dotnet add package Npgsql. This command installs the Npgsql package, which is the .NET data provider for PostgreSQL.
-5. **Set Up PostgreSQL Database**
-6. **Start the Application:**
-start inventory.sln
+4. **Set Up PostgreSQL Database**
+5. **Start the Application:**
+
 
 ## Intefaces
 ### CLI (Console Application)
