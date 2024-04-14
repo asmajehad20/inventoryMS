@@ -250,7 +250,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
             try
             {
                 dbConnection.OpenConnection();
-                string query = "INSERT role_id, name INTO roles VALUES uuid_generate_v4(), @Name ; ";
+                string query = "INSERT INTO roles (role_id, name) VALUES (uuid_generate_v4(), @Name);\r\n";
 
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@Name", rolename);
