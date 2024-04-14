@@ -225,7 +225,14 @@ namespace inventoryMSCli.CLI
                         break;
 
                     case "add":
-                        UserPage.AddNewProduct();
+                        try
+                        {
+                            UserPage.AddNewProduct();
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine($"Error: {ex.Message}");
+                        }
                         break;
 
                     case "status":
@@ -241,7 +248,14 @@ namespace inventoryMSCli.CLI
                     case "update":
                         Console.Write("Product Name or Barcode:");
                         string productkeywork = Console.ReadLine() ?? "";
-                        UserPage.UpdateProduct(productkeywork);
+                        try
+                        {
+                            UserPage.UpdateProduct(productkeywork);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error : {ex.Message}");
+                        }
                         break;
 
                     case "p_status":
@@ -393,23 +407,44 @@ namespace inventoryMSCli.CLI
                         break;
 
                     case "add":
-                        Console.Write("Category Name:");
-                        string NewCategoryName = Console.ReadLine() ?? "";
-                        InventoryManager.AddCategory(NewCategoryName);
+                        try
+                        {
+                            Console.Write("Category Name:");
+                            string NewCategoryName = Console.ReadLine() ?? "";
+                            InventoryManager.AddCategory(NewCategoryName);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error : {ex.Message}");
+                        }
                         
                         break;
 
                     case "update":
-                        Console.Write("Choose the category you want to update:");
-                        string category = UserPage.SetCategory();
-                        Console.Write("category new name:");
-                        string newName = Console.ReadLine() ?? "";
-                        InventoryManager.UpdateCategory(category, newName);
+                        try
+                        {
+                            Console.Write("Choose the category you want to update:");
+                            string category = UserPage.SetCategory();
+                            Console.Write("category new name:");
+                            string newName = Console.ReadLine() ?? "";
+                            InventoryManager.UpdateCategory(category, newName);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error : {ex.Message}");
+                        }
                         break;
 
                     case "delete":
-                        Console.Write("Category Name:");
-                        InventoryManager.DeleteCategory(Console.ReadLine() ?? "");
+                        try
+                        {
+                            Console.Write("Category Name:");
+                            InventoryManager.DeleteCategory(Console.ReadLine() ?? "");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error : {ex.Message}");
+                        }
                         break;
 
                     case "c":

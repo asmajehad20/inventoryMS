@@ -124,7 +124,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
 
             string ProductId = ProductData.GetProductID(keyword);
 
-            // Replace null values with stored values
+            // Replace null and empty values with stored values
             name = string.IsNullOrEmpty(name) ? storedProduct.Name : name;
             barcode = string.IsNullOrEmpty(barcode) ? storedProduct.Barcode : barcode;
             price = price == 0 ? storedProduct.Price : price;
@@ -154,7 +154,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
