@@ -149,7 +149,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 cmd.Parameters.AddWithValue("@UserName", UserName);
                 
                 cmd.ExecuteNonQuery();
-
+                Console.WriteLine("user deleted");
             }
             catch (NpgsqlException ex)
             {
@@ -255,6 +255,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 using NpgsqlCommand cmd = new(query, dbConnection.Connection);
                 cmd.Parameters.AddWithValue("@Name", rolename);
                 cmd.ExecuteNonQuery();
+                Console.WriteLine("role added");
                 return true;
                
             }
@@ -319,6 +320,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                     cmd.Parameters.AddWithValue("@name", rolename);
                     cmd.ExecuteNonQuery();
                 }
+                Console.WriteLine("role deleted");
                 return true;
             }
             catch (NpgsqlException ex)
