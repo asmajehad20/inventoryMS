@@ -43,3 +43,6 @@ C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\obj\Debu
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\obj\Debug\net8.0\inventoryMSCli.pdb
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\obj\Debug\net8.0\inventoryMSCli.genruntimeconfig.cache
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\obj\Debug\net8.0\ref\inventoryMSCli.dll
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\bin\Debug\net8.0\inventoryMSCli.xml
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\bin\Debug\net8.0\inventoryMSLogic.xml
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSCli\inventoryMSCli\obj\Debug\net8.0\inventoryMSCli.xml

@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>inventoryMSCli</name>
+    </assembly>
+    <members>
+        <member name="T:inventoryMSCli.CLI.AdminPage">
+            <summary>
+            Represents the admin page of the Inventory Management System CLI.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:inventoryMSCli.CLI.AdminPage"/> class with the specified username.
+            </summary>
+            <param name="userName">The username of the admin.</param>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.DisplayAdminMenu">
+            <summary>
+            Displays the admin menu options.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.Run">
+            <summary>
+            Runs the admin menu of the Inventory Management System CLI.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.UsersOptionsMenu">
+            <summary>
+            Displays the menu for user options.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.UserMenuRun">
+            <summary>
+            Runs the user menu.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.ProductsOptionsMenu">
+            <summary>
+            Displays the products options menu.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.ProductMenuRun">
+            <summary>
+            Runs the product menu.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.RolesOptionsMenu">
+            <summary>
+            Displays the roles options menu.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.RolesMenuRun">
+            <summary>
+            Runs the roles menu.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.CategoryOptionsMenu">
+            <summary>
+            Displays the category options menu.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.AdminPage.CategoryMenuRun">
+            <summary>
+            Runs the categories menu.
+            </summary>
+        </member>
+        <member name="T:inventoryMSCli.CLI.MainPage">
+            <summary>
+            Represents the main page of the Inventory Management System CLI.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.MainPage.DisplayMainMenu">
+            <summary>
+            Displays the main menu options.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.MainPage.Run">
+            <summary>
+            Runs the main menu of the Inventory Management System CLI.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.MainPage.Login">
+            <summary>
+            Prompts the user for login credentials and attempts to log in.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.MainPage.Register">
+            <summary>
+            Registers a new user by collecting required information.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.MainPage.GetUserName">
+            <summary>
+            Prompts the user to enter their username.
+            </summary>
+            <returns>The username entered by the user.</returns>
+        </member>
+        <member name="M:inventoryMSCli.CLI.MainPage.GetPassword">
+            <summary>
+            Prompts the user to enter their password without showing it on the console.
+            </summary>
+            <returns>The password entered by the user.</returns>
+        </member>
+        <member name="T:inventoryMSCli.CLI.UserPage">
+            <summary>
+            Contains methods related to user options in the Inventory Management System.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.DisplayUserMenu">
+            <summary>
+            Displays the user menu on the console.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.Run">
+            <summary>
+            Runs the user page logic.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.UsersOptionsMenu">
+            <summary>
+            Displays the options menu for user-related actions.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.UserMenuRun">
+            <summary>
+            Runs the user menu for user-related actions.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.ProductsOptionsMenu">
+            <summary>
+            Displays the options menu for product-related actions.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.ProductMenuRun">
+            <summary>
+            Runs the product menu for product-related actions.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.UpdateProduct(System.String)">
+            <summary>
+            Updates the details of an existing product.
+            </summary>
+            <param name="keyword">The name or barcode of the product to update.</param>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.AddNewProduct">
+            <summary>
+            Adds a new product to the inventory.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.SetCategory">
+            <summary>
+            Sets the category based on user input.
+            </summary>
+            <returns>The selected category.</returns>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.SetStatus">
+            <summary>
+            Sets the status based on user input.
+            </summary>
+            <returns>The selected status.</returns>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.GetPrice">
+            <summary>
+            Gets the price from user input.
+            </summary>
+            <returns>The price.</returns>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.GetQuantity">
+            <summary>
+            Gets the quantity from user input.
+            </summary>
+            <returns>The quantity.</returns>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.GetBarcode">
+            <summary>
+            Gets the barcode from user input.
+            </summary>
+            <returns>The barcode.</returns>
+        </member>
+        <member name="M:inventoryMSCli.CLI.UserPage.GetProductName">
+            <summary>
+            Gets the product name from user input.
+            </summary>
+            <returns>The product name.</returns>
+        </member>
+        <member name="M:inventoryMSCli.Program.Main(System.String[])">
+            <summary>
+            Entry point of the application.
+            </summary>
+        </member>
+        <member name="M:inventoryMSCli.Program.StartProcess">
+            <summary>
+            Starts the API process.
+            </summary>
+        </member>
+    </members>
+</doc>

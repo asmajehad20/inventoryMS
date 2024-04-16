@@ -1,5 +1,6 @@
 ﻿
 using Npgsql;
+using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace inventoryMSLogic.src.DataAccessLayer
@@ -640,6 +641,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
                 cmd.ExecuteNonQuery();
 
                 Console.WriteLine($"product updated");
+               // cmd.Dispose();
                 return true;
             }
             catch (NpgsqlException ex)

@@ -9,8 +9,8 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
     /// </summary>
     public class InventoryManager
     {
-        public InventoryManager() { }
-        static readonly InventoryRepository ProductData = new();
+        
+        public static readonly InventoryRepository ProductData = new();
 
         /// <summary>
         /// Checks if a product exists in the inventory.

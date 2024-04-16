@@ -23,3 +23,5 @@ C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\refint\inventoryMSLogic.dll
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.pdb
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\ref\inventoryMSLogic.dll
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\bin\Debug\net8.0\inventoryMSLogic.xml
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSLogic\inventoryMSLogic\obj\Debug\net8.0\inventoryMSLogic.xml

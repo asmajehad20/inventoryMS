@@ -5,12 +5,14 @@ using inventoryMSLogic.src.DataAccessLayer;
 
 namespace inventoryMSLogic.src.BusinessLogicLayer
 {
+    /// <summary>
+    /// Provides functionality for user authentication and registration.
+    /// </summary>
     public class AuthenticationManager
     {
 
         // <summary>
-        /// Checks whether the provided username and password match the stored credentials in the user repository.
-        /// </summary>
+        /// Checks whether the provided username and password match the stored credentials in the user repository. 
         /// <param name="UserName">The username of the user attempting to authenticate.</param>
         /// <param name="Password">The password provided by the user attempting to authenticate.</param>
         /// <returns>
