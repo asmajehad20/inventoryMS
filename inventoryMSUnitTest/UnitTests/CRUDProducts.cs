@@ -1,14 +1,6 @@
 ﻿using inventoryMSLogic.src.BusinessLogicLayer;
 using inventoryMSLogic.src.DataAccessLayer;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace inventoryMS.Tests.UnitTests
 {
@@ -38,6 +30,9 @@ namespace inventoryMS.Tests.UnitTests
         public void InventoryManager_AddValidNewProduct_Success()
         {
             //Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
             Product product = new()
             {
                 Name = "new product 3",
@@ -48,9 +43,6 @@ namespace inventoryMS.Tests.UnitTests
                 CategoryName = "Electronics"
             };
             
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
             mockRepository.Setup(repo => repo.ProductExists(product.Name)).Returns(false);
             mockRepository.Setup(repo => repo.ProductExists(product.Barcode)).Returns(false);
             mockRepository.Setup(repo => repo.AddProduct(It.IsAny<Product>())).Returns(true);
@@ -86,6 +78,9 @@ namespace inventoryMS.Tests.UnitTests
         public void InventoryManager_AddInValidExistingProductName_Fail()
         {
             //Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
             Product product = new()
             {
                 Name = "existing product",
@@ -96,9 +91,6 @@ namespace inventoryMS.Tests.UnitTests
                 CategoryName = "Electronics"
             };
             
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
             mockRepository.Setup(repo => repo.ProductExists(product.Name)).Returns(true);
             //mockRepository.Setup(repo => repo.ProductExists(product.Barcode)).Returns(true);
 
@@ -111,6 +103,9 @@ namespace inventoryMS.Tests.UnitTests
         public void InventoryManager_AddInValidExistingProductBarcode_Fail()
         {
             //Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
             Product product = new()
             {
                 Name = "existing product",
@@ -121,9 +116,6 @@ namespace inventoryMS.Tests.UnitTests
                 CategoryName = "Electronics"
             };
             
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
             //mockRepository.Setup(repo => repo.ProductExists(product.Name)).Returns(true);
             mockRepository.Setup(repo => repo.ProductExists(product.Barcode)).Returns(true);
 
@@ -136,6 +128,9 @@ namespace inventoryMS.Tests.UnitTests
         public void InventoryManager_UpdateProduct_Success()
         {
             //Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
             string keyword = "name of product || barcode of product";
             Product product = new()
             {
@@ -149,9 +144,6 @@ namespace inventoryMS.Tests.UnitTests
 
             string productID = "uuid_string";
 
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
             mockRepository.Setup(repo => repo.ProductExists(keyword)).Returns(true);
             mockRepository.Setup(repo => repo.GetProduct(keyword)).Returns(product);
             mockRepository.Setup(repo => repo.GetProductID(keyword)).Returns(productID);
@@ -164,90 +156,51 @@ namespace inventoryMS.Tests.UnitTests
             Assert.True(result);
         }
 
-
-
-/*
- *      
- *      
-        
-
-        
-
         [Fact]
-        public void InventoryManager_UpdateCategory_Success()
+        public void InventoryManager_UpdateNoneExsistingProduct_Fail()
         {
-            // Arrange
-            string Category = "category";//Existing Category
-            string UpdatedCateoryName = "updated category";
-            string CategoryID = "uuid_strring";
-
+            //Arrange
             var mockRepository = new Mock<InventoryRepository>();
             InventoryManager inventoryManager = new(mockRepository.Object);
 
-            mockRepository.Setup(repo => repo.CategoryExists(Category)).Returns(true);
-            mockRepository.Setup(repo => repo.GetCategoryID(Category)).Returns(CategoryID);
-            mockRepository.Setup(repo => repo.UpdateCategory(CategoryID, UpdatedCateoryName)).Returns(true);
+            string keyword = "None Exsisting Product";
+            Product product = new()
+            {
+                Name = "new updated product name",
+                Barcode = "",
+                Price = 0,
+                Quantity = 0,
+                Status = "",
+                CategoryName = ""
+            };
+
+            mockRepository.Setup(repo => repo.ProductExists(keyword)).Returns(false);
+
+            // Act & Assert
+            Assert.Throws<Exception>(() => inventoryManager.UpdateProduct(keyword, product.Name, product.Barcode, product.Price, product.Quantity, product.Status, product.CategoryName));
+
+        }
+
+        [Fact]
+        public void InventoryManager_DeleteProduct_Success()
+        {
+            //Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
+            string keyword = "Product";
+            
+
+            mockRepository.Setup(repo => repo.ProductExists(keyword)).Returns(true);
+            mockRepository.Setup(repo => repo.DeleteProduct(keyword)).Returns(true);
 
             // Act
-            bool result = inventoryManager.UpdateCategory(Category, UpdatedCateoryName);
+            bool result = inventoryManager.DeleteProduct(keyword);
 
             // Assert
             Assert.True(result);
+            
         }
 
-        [Fact]
-        public void InventoryManager_UpdateNoneExistingCategory_Fail()
-        {
-            // Arrange
-            string Category = "non existing category";//Existing Category
-            string UpdatedCateoryName = "updated category";
-           
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
-            mockRepository.Setup(repo => repo.CategoryExists(Category)).Returns(false);
-
-            // Act & Assert
-            Assert.Throws<Exception>(() => inventoryManager.UpdateCategory(Category, UpdatedCateoryName));
-
-
-        }
-
-        [Theory]
-        [InlineData(null, "new name")] // Null category
-        [InlineData("", "new name")] // Empty category
-        [InlineData("category", null)] // new name null 
-        [InlineData("category", "")] // new name null 
-        public void InventoryManager_UpdateCategory_Fail(string Category, string UpdatedCateoryName)
-        {
-
-            // Arrange
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
-            // Act & Assert
-            Assert.Throws<Exception>(() => inventoryManager.UpdateCategory(Category, UpdatedCateoryName));
-        }
-
-
-
-        [Fact]
-        public void InventoryManager_DeleteCategory_Success()
-        {
-            string Category = "category";//Existing Category
-
-            // Arrange
-            var mockRepository = new Mock<InventoryRepository>();
-            InventoryManager inventoryManager = new(mockRepository.Object);
-
-            mockRepository.Setup(repo => repo.CategoryExists(Category)).Returns(true);
-            mockRepository.Setup(repo => repo.DeleteCategory(Category)).Returns(true);
-
-            // Act
-            bool result = inventoryManager.DeleteCategory(Category);
-
-            // Assert
-            Assert.True(result);
-        }*/
     }
 }
