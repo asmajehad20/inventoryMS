@@ -90,11 +90,11 @@ namespace inventoryMS.Tests.UnitTests
         [Fact]
         public void InventoryManager_UpdateCategory_Success()
         {
+            // Arrange
             string Category = "category";//Existing Category
             string UpdatedCateoryName = "updated category";
             string CategoryID = "uuid_strring";
 
-            // Arrange
             var mockRepository = new Mock<InventoryRepository>();
             InventoryManager inventoryManager = new(mockRepository.Object);
 
@@ -108,6 +108,42 @@ namespace inventoryMS.Tests.UnitTests
             // Assert
             Assert.True(result);
         }
+
+        [Fact]
+        public void InventoryManager_UpdateNoneExistingCategory_Fail()
+        {
+            // Arrange
+            string Category = "non existing category";//Existing Category
+            string UpdatedCateoryName = "updated category";
+           
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
+            mockRepository.Setup(repo => repo.CategoryExists(Category)).Returns(false);
+
+            // Act & Assert
+            Assert.Throws<Exception>(() => inventoryManager.UpdateCategory(Category, UpdatedCateoryName));
+
+
+        }
+
+        [Theory]
+        [InlineData(null, "new name")] // Null category
+        [InlineData("", "new name")] // Empty category
+        [InlineData("category", null)] // new name null 
+        [InlineData("category", "")] // new name null 
+        public void InventoryManager_UpdateCategory_Fail(string Category, string UpdatedCateoryName)
+        {
+
+            // Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
+            // Act & Assert
+            Assert.Throws<Exception>(() => inventoryManager.UpdateCategory(Category, UpdatedCateoryName));
+        }
+
+
 
         [Fact]
         public void InventoryManager_DeleteCategory_Success()
