@@ -88,15 +88,19 @@ namespace inventoryMS.Tests.UnitTests
         }
 
         [Fact]
-        public void DeleteCategory_ExistingCategory_DeletesCategory()
+        public void InventoryManager_DeleteCategory_Success()
         {
+            string Category = "category";//Existing Category
+
             // Arrange
-            InventoryRepository repository = new();
-            InventoryManager inventoryManager = new(repository);
-            string existingCategory = "New category5";
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
+            mockRepository.Setup(repo => repo.CategoryExists(Category)).Returns(true);
+            mockRepository.Setup(repo => repo.DeleteCategory(Category)).Returns(true);
 
             // Act
-            bool result = inventoryManager.DeleteCategory(existingCategory);
+            bool result = inventoryManager.DeleteCategory(Category);
 
             // Assert
             Assert.True(result);
