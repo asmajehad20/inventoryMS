@@ -285,14 +285,23 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="NewNmae">The new updated name of the category.</param>
         public bool UpdateCategory(string category, string NewNmae)
         {
-            if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
+            if (string.IsNullOrEmpty(category) || string.IsNullOrEmpty(NewNmae))
             {
-                string categoryID = ProductData.GetCategoryID(category);
-                if(!ProductData.UpdateCategory(categoryID, NewNmae))
-                {
-                    throw new Exception("Failed to update category.");
-                }
+                throw new Exception("category cant be null");
             }
+
+            if (!ProductData.CategoryExists(category))
+            {
+                throw new Exception("Failed to find category.");
+            }
+            
+            string categoryID = ProductData.GetCategoryID(category);
+                
+            if(!ProductData.UpdateCategory(categoryID, NewNmae))
+            {
+                throw new Exception("Failed to update category.");
+            }
+            
             return true;
         }
 

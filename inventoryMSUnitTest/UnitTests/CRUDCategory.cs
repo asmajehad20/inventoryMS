@@ -88,6 +88,28 @@ namespace inventoryMS.Tests.UnitTests
         }
 
         [Fact]
+        public void InventoryManager_UpdateCategory_Success()
+        {
+            string Category = "category";//Existing Category
+            string UpdatedCateoryName = "updated category";
+            string CategoryID = "uuid_strring";
+
+            // Arrange
+            var mockRepository = new Mock<InventoryRepository>();
+            InventoryManager inventoryManager = new(mockRepository.Object);
+
+            mockRepository.Setup(repo => repo.CategoryExists(Category)).Returns(true);
+            mockRepository.Setup(repo => repo.GetCategoryID(Category)).Returns(CategoryID);
+            mockRepository.Setup(repo => repo.UpdateCategory(CategoryID, UpdatedCateoryName)).Returns(true);
+
+            // Act
+            bool result = inventoryManager.UpdateCategory(Category, UpdatedCateoryName);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
         public void InventoryManager_DeleteCategory_Success()
         {
             string Category = "category";//Existing Category
