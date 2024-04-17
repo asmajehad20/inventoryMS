@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inventoryMSLogic", "..\inve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inventoryMSApi", "..\inventoryMSApi\inventoryMSApi.csproj", "{F7B3B5C7-E5AA-40E0-A14F-3D9C7FBF8242}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inventoryMSUnitTest", "..\inventoryMSUnitTest\inventoryMSUnitTest.csproj", "{C93D65CA-3061-41E9-952B-4901B1AC77D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inventoryMS.Tests", "..\inventoryMSUnitTest\inventoryMS.Tests.csproj", "{C93D65CA-3061-41E9-952B-4901B1AC77D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C05EC1FA-6DA6-40F2-AF2B-0A0E7200FC17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C05EC1FA-6DA6-40F2-AF2B-0A0E7200FC17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C05EC1FA-6DA6-40F2-AF2B-0A0E7200FC17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C05EC1FA-6DA6-40F2-AF2B-0A0E7200FC17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15399610-949D-4EFC-9DB1-F23A3F17A56D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7B3B5C7-E5AA-40E0-A14F-3D9C7FBF8242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7B3B5C7-E5AA-40E0-A14F-3D9C7FBF8242}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7B3B5C7-E5AA-40E0-A14F-3D9C7FBF8242}.Release|Any CPU.ActiveCfg = Release|Any CPU

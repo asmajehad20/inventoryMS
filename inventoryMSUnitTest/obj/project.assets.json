@@ -5847,9 +5847,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
-      "projectName": "inventoryMSUnitTest",
-      "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMSUnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMS.Tests.csproj",
+      "projectName": "inventoryMS.Tests",
+      "projectPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\inventoryMS.Tests.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\pc\\Desktop\\QTZ\\tasks\\inventoryMS\\inventoryMSUnitTest\\obj\\",
       "projectStyle": "PackageReference",

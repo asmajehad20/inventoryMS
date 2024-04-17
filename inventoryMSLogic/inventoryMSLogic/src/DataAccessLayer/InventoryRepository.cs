@@ -69,7 +69,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>True if the product exists, otherwise false.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
-        public bool ProductExists(string Keyword)
+        public virtual bool ProductExists(string Keyword)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>A <see cref="Product"/> object containing details of the found product, or null if not found.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
-        public Product? GetProduct(string Keyword)
+        public virtual Product? GetProduct(string Keyword)
         {
             Product? product = null;
             try
@@ -185,7 +185,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <returns>An array of <see cref="Product"/> objects containing details of all products.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
-        public Product[] GetAllProducts()
+        public virtual Product[] GetAllProducts()
         {
             List<Product> ProductsList = [];
 
@@ -232,7 +232,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="product">The <see cref="Product"/> object containing details of the product to be added.</param>
         /// <returns>True if the product is successfully added, otherwise false.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
-        public bool AddProduct(Product product)
+        public virtual bool AddProduct(Product product)
         {
             try
             {
@@ -276,7 +276,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="category">The new category name of the product.</param>
         /// <returns>True if the product is successfully updated, otherwise false.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
-        public bool UpdateProduct(string id, string name, string barcode, int price, int quantity, string status, string category)
+        public virtual bool UpdateProduct(string id, string name, string barcode, int price, int quantity, string status, string category)
         {
             try
             {
@@ -320,7 +320,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <returns>True if the product is successfully deleted, otherwise false.</returns>
         /// <exception cref="Exception">Thrown when an error occurs during database interaction.</exception>
         /// <exception cref="NpgsqlException">Thrown when an error occurs with Npgsql, the PostgreSQL .NET data provider.</exception>
-        public bool DeleteProduct(string keyword)
+        public virtual bool DeleteProduct(string keyword)
         {
             try
             {
@@ -350,7 +350,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <param name="keyword">The barcode or product name to search for.</param>
         /// <returns>A string containing the status and quantity of the product.</returns>
-        public string ProductStatus(string keyword)
+        public virtual string ProductStatus(string keyword)
         {
             string status = "";
             try
@@ -387,7 +387,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <param name="status">The status of the products to retrieve.</param>
         /// <returns>A JSON string containing information about products with the specified status.</returns>
-        public Product[] GetProductsByStatus(string status)
+        public virtual Product[] GetProductsByStatus(string status)
         {
             List<Product> ProductsList = [];
 
@@ -434,7 +434,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <param name="SearchWord">The search word to look for in product names, barcodes, status, and category names.</param>
         /// <returns>A JSON string containing information about matching products.</returns>
-        public Product[] Search(string SearchWord)
+        public virtual Product[] Search(string SearchWord)
         {
             List<Product> ProductsFound = [];
 
@@ -489,7 +489,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// </summary>
         /// <param name="name">The name of the category to check.</param>
         /// <returns>True if the category exists, otherwise false.</returns>
-        public bool CategoryExists(string name)
+        public virtual bool CategoryExists(string name)
         {
             bool roleExists = false;
 
@@ -521,7 +521,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Retrieves all categories from the database and returns them as JSON.
         /// </summary>
         /// <returns>A JSON string containing information about all categories.</returns>
-        public string[] GetAllCategories()
+        public virtual string[] GetAllCategories()
         {
             List<string> categories = []; // Correct list initialization
 
@@ -557,7 +557,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Adds a new category to the database.
         /// </summary>
         /// <param name="name">The name of the category to be added.</param>
-        public bool AddCategory(string name)
+        public virtual bool AddCategory(string name)
         {
             try
             {
@@ -586,7 +586,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// Deletes a category from the database.
         /// </summary>
         /// <param name="name">The name of the category to be deleted.</param>
-        public bool DeleteCategory(string name)
+        public virtual bool DeleteCategory(string name)
         {
             try
             {
@@ -618,7 +618,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <exception cref="Exception">Thrown when the category ID is not found in the database.</exception>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
 
-        public string GetCategoryID(string Keyword)
+        public virtual string GetCategoryID(string Keyword)
         {
             try
             {
@@ -663,7 +663,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="name">The new name of the category.</param>
         /// <returns>True if the category is successfully updated, otherwise false.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
-        public bool UpdateCategory(string id, string name)
+        public virtual bool UpdateCategory(string id, string name)
         {
             try
             {

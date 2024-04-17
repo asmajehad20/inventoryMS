@@ -69,4 +69,4 @@ C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\invent
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventoryMSApi.genruntimeconfig.cache
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\ref\inventoryMSApi.dll
 C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\bin\Debug\net8.0\inventoryMSLogic.xml
-C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventor.1B130A3B.Up2Date
+C:\Users\pc\Desktop\QTZ\tasks\inventoryMS\inventoryMSApi\obj\Debug\net8.0\inventoryMSApi.csproj.CopyComplete

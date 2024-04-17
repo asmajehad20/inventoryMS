@@ -1,10 +1,9 @@
-﻿
-using inventoryMSLogic.src.BusinessLogicLayer;
+﻿using inventoryMSLogic.src.BusinessLogicLayer;
 using inventoryMSLogic.src.DataAccessLayer;
 using Moq;
 using System.Reflection;
 
-namespace inventoryMSUnitTest
+namespace inventoryMS.Tests.IntegrationTests
 {
     public class CRUDCategory
     {
@@ -23,7 +22,7 @@ namespace inventoryMSUnitTest
         }
 
         [Theory]
-        [InlineData("New category5", true)] // existing category
+        [InlineData("New category5", true)] // new category
         [InlineData("Electronics", false)] // existing category
         [InlineData(null, false)] // Null category
         [InlineData("", false)] // Empty category
@@ -38,11 +37,11 @@ namespace inventoryMSUnitTest
             try
             {
                 inventoryManager.AddCategory(category);
-                actualResult = true; 
+                actualResult = true;
             }
             catch
             {
-                actualResult = false; 
+                actualResult = false;
             }
 
             // Assert
