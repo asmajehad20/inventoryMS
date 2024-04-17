@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("inventoryMSCli")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58338ba1e4da4ca106c7260083f7a61289d424b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8884337915e22f4af42a7f079dad0ba2b922cd6b")]
 [assembly: System.Reflection.AssemblyProductAttribute("inventoryMSCli")]
 [assembly: System.Reflection.AssemblyTitleAttribute("inventoryMSCli")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

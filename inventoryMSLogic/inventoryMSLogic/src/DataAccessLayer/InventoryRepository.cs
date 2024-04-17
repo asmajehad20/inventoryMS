@@ -98,7 +98,7 @@ namespace inventoryMSLogic.src.DataAccessLayer
         /// <param name="Keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>The product ID as a string if found.</returns>
         /// <exception cref="NpgsqlException">Thrown when an error occurs during database interaction.</exception>
-        public string GetProductID(string Keyword)
+        public virtual string GetProductID(string Keyword)
         {
             try
             {
