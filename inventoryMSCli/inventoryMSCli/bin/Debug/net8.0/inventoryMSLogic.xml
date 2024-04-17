@@ -43,6 +43,19 @@
             <summary>
             Provides methods for managing inventory-related operations.
             </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:inventoryMSLogic.src.BusinessLogicLayer.InventoryManager"/> class with the specified inventory repository.
+            </remarks>
+            <param name="productData">The inventory repository to be used by the inventory manager.</param>
+        </member>
+        <member name="M:inventoryMSLogic.src.BusinessLogicLayer.InventoryManager.#ctor(inventoryMSLogic.src.DataAccessLayer.InventoryRepository)">
+            <summary>
+            Provides methods for managing inventory-related operations.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:inventoryMSLogic.src.BusinessLogicLayer.InventoryManager"/> class with the specified inventory repository.
+            </remarks>
+            <param name="productData">The inventory repository to be used by the inventory manager.</param>
         </member>
         <member name="M:inventoryMSLogic.src.BusinessLogicLayer.InventoryManager.CheckIfProductExists(System.String)">
             <summary>
@@ -83,12 +96,12 @@
             If a parameter is null or empty, it retains the existing value.
             </summary>
             <param name="keyword">The keyword to identify the product to be updated.</param>
-            <param name="ProductName">The new name of the product.</param>
-            <param name="Barcode">The new barcode of the product.</param>
-            <param name="Price">The new price of the product.</param>
-            <param name="Quantity">The new quantity of the product.</param>
-            <param name="Status">The new status of the product.</param>
-            <param name="Category">The new category of the product.</param>
+            <param name="name">The new name of the product.</param>
+            <param name="barcode">The new barcode of the product.</param>
+            <param name="price">The new price of the product.</param>
+            <param name="quantity">The new quantity of the product.</param>
+            <param name="status">The new status of the product.</param>
+            <param name="category">The new category of the product.</param>
         </member>
         <member name="M:inventoryMSLogic.src.BusinessLogicLayer.InventoryManager.DeleteProduct(System.String)">
             <summary>
@@ -193,6 +206,19 @@
             Represents a connection to the PostgreSQL database.
             </summary>
         </member>
+        <member name="F:inventoryMSLogic.src.DataAccessLayer.DatabaseConnection.Connection">
+            <summary>
+            Represents a database connection used for interacting with PostgreSQL database.
+            </summary>
+        </member>
+        <member name="M:inventoryMSLogic.src.DataAccessLayer.DatabaseConnection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:inventoryMSLogic.src.DataAccessLayer.DatabaseConnection"/> class.
+            </summary>
+            <remarks>
+            This constructor creates a new <see cref="T:Npgsql.NpgsqlConnection"/> object using the connection string and assigns it to the Connection property.
+            </remarks>
+        </member>
         <member name="M:inventoryMSLogic.src.DataAccessLayer.DatabaseConnection.OpenConnection">
             <summary>
             Opens a connection to the database.
@@ -208,10 +234,54 @@
             Represents a product in the inventory.
             </summary>
         </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.Product.Name">
+            <summary>
+            the name of the product in the inventory.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.Product.Price">
+            <summary>
+            the price of the product in the inventory.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.Product.Barcode">
+            <summary>
+            the barcode of the product in the inventory.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.Product.Quantity">
+            <summary>
+            the quantity of the product in the inventory.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.Product.Status">
+            <summary>
+            the status of the product in the inventory.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.Product.CategoryName">
+            <summary>
+            the category of the product in the inventory.
+            </summary>
+        </member>
         <member name="T:inventoryMSLogic.src.DataAccessLayer.InventoryRepository">
             <summary>
             Handles database operations related to inventory.
             </summary>
+        </member>
+        <member name="M:inventoryMSLogic.src.DataAccessLayer.InventoryRepository.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:inventoryMSLogic.src.DataAccessLayer.InventoryRepository"/> class.
+            </summary>
+            <remarks>
+            This constructor creates a new <see cref="T:inventoryMSLogic.src.DataAccessLayer.DatabaseConnection"/> object and assigns it to the database connection field.
+            </remarks>
+        </member>
+        <member name="M:inventoryMSLogic.src.DataAccessLayer.InventoryRepository.#ctor(inventoryMSLogic.src.DataAccessLayer.DatabaseConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:inventoryMSLogic.src.DataAccessLayer.InventoryRepository"/> class with the specified database connection.
+            </summary>
+            <param name="connection">The database connection to be used by the inventory repository.</param>
         </member>
         <member name="M:inventoryMSLogic.src.DataAccessLayer.InventoryRepository.ProductExists(System.String)">
             <summary>
@@ -342,6 +412,21 @@
         <member name="T:inventoryMSLogic.src.DataAccessLayer.User">
             <summary>
             Represents a user in the system.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.User.Username">
+            <summary>
+            Represents the user name in the system.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.User.Password">
+            <summary>
+            Represents the password of the user in the system.
+            </summary>
+        </member>
+        <member name="P:inventoryMSLogic.src.DataAccessLayer.User.Role">
+            <summary>
+            Represents the role of the user in the system.
             </summary>
         </member>
         <member name="T:inventoryMSLogic.src.DataAccessLayer.UserRepository">

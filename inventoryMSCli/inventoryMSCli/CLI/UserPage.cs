@@ -12,10 +12,13 @@ namespace inventoryMSCli.CLI
     class UserPage
     {
         public static string UserName { get; private set; } = "";
+        private readonly InventoryManager _inventoryManager;
 
         public UserPage(string userName)
         {
             UserName = userName;
+            InventoryRepository _repository = new();
+            _inventoryManager = new InventoryManager(_repository);
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace inventoryMSCli.CLI
         /// <summary>
         /// Runs the user page logic.
         /// </summary>
-        public static void Run()
+        public void Run()
         {
             
             Console.Clear();
@@ -180,7 +183,7 @@ namespace inventoryMSCli.CLI
         /// <summary>
         /// Runs the product menu for product-related actions.
         /// </summary>
-        private static void ProductMenuRun()
+        private void ProductMenuRun()
         {
             Console.Clear();
             bool programExit = false;
@@ -194,7 +197,7 @@ namespace inventoryMSCli.CLI
                 {
 
                     case "all":
-                        Product[] products = InventoryManager.GetAllProducts();
+                        Product[] products = _inventoryManager.GetAllProducts();
                         Console.WriteLine("Products:");
                         Console.WriteLine("----------------------------------------------------------------------------------------------------------");
                         Console.WriteLine("|Product Name          | Barcode       | Price   | Quantity  | Status       | Category                   |");
@@ -215,13 +218,13 @@ namespace inventoryMSCli.CLI
                         break;
 
                     case "status":
-                        InventoryManager.StatusTracking(SetStatus().ToLower());
+                        _inventoryManager.StatusTracking(SetStatus().ToLower());
                         break;
 
                     case "delete":
                         Console.Write("Product Name or Barcode:");
                         string keyword = Console.ReadLine() ?? "";
-                        InventoryManager.DeleteProduct(keyword);
+                        _inventoryManager.DeleteProduct(keyword);
                         break;
 
                     case "update":
@@ -233,14 +236,14 @@ namespace inventoryMSCli.CLI
                     case "p_status":
                         Console.Write("Product Name or Barcode:");
                         string ProductStatus = Console.ReadLine() ?? "";
-                        InventoryManager.GetProductStatus(ProductStatus);
+                        _inventoryManager.GetProductStatus(ProductStatus);
                         break;
 
                     case "search":
                         Console.Write("search word:");
                         string searchkeyword = Console.ReadLine() ?? "";
 
-                        Product[] product = InventoryManager.Search(searchkeyword);
+                        Product[] product = _inventoryManager.Search(searchkeyword);
                         Console.WriteLine("Products:");
                         Console.WriteLine(JsonSerializer.Serialize(product, new JsonSerializerOptions { WriteIndented = true }));
                         
@@ -268,11 +271,11 @@ namespace inventoryMSCli.CLI
         /// Updates the details of an existing product.
         /// </summary>
         /// <param name="keyword">The name or barcode of the product to update.</param>
-        public static void UpdateProduct(string keywword)
+        public void UpdateProduct(string keyword)
         {
-            if (!InventoryManager.CheckIfProductExists(keywword))
+            if (!_inventoryManager.CheckIfProductExists(keyword))
             {
-                Console.WriteLine($"cant find Product {keywword}");
+                Console.WriteLine($"cant find Product {keyword}");
                 return;
             }
 
@@ -306,17 +309,17 @@ namespace inventoryMSCli.CLI
             //get category display categories 
             string category = SetCategory();
 
-            InventoryManager.UpdateProduct(keywword, ProductName, Barcode, price, quantity, status, category);
+            _inventoryManager.UpdateProduct(keyword, ProductName, Barcode, price, quantity, status, category);
         }
 
         /// <summary>
         /// Adds a new product to the inventory.
         /// </summary>
-        public static void AddNewProduct()
+        public void AddNewProduct()
         {
             //get product name
             string ProductName = GetProductName();
-            if (InventoryManager.CheckIfProductExists(ProductName))
+            if (_inventoryManager.CheckIfProductExists(ProductName))
             {
                 Console.WriteLine($"Product with Name {ProductName} already in inventory");
                 return;
@@ -324,7 +327,7 @@ namespace inventoryMSCli.CLI
 
             //get product barcode
             string Barcode =  GetBarcode();
-            if (InventoryManager.CheckIfProductExists(Barcode))
+            if (_inventoryManager.CheckIfProductExists(Barcode))
             {
                 Console.WriteLine($"Product with Barcode {Barcode} already in inventory");
                 return;
@@ -342,14 +345,14 @@ namespace inventoryMSCli.CLI
             //get category display categories 
             string category = SetCategory();
 
-            InventoryManager.AddProduct(ProductName, Barcode, price, quantity, status, category);
+            _inventoryManager.AddProduct(ProductName, Barcode, price, quantity, status, category);
         }
 
         /// <summary>
         /// Sets the category based on user input.
         /// </summary>
         /// <returns>The selected category.</returns>
-        public static string SetCategory()
+        public string SetCategory()
         {
             string category = "";
 
@@ -357,7 +360,7 @@ namespace inventoryMSCli.CLI
             {
                 Console.WriteLine("Category Options:");
 
-                Dictionary<int, string> categories = InventoryManager.GetAllCategories();
+                Dictionary<int, string> categories = _inventoryManager.GetAllCategories();
 
                 Console.Write("Enter category text or numeric code: ");
                 string input = Console.ReadLine()?.ToLower() ?? "";
@@ -365,9 +368,9 @@ namespace inventoryMSCli.CLI
 
                 if (int.TryParse(input, out int code))
                 {
-                    if (categories.ContainsKey(code))
+                    if (categories.TryGetValue(code, out string? value))
                     {
-                        category = categories[code];
+                        category = value;
                     }
                     else
                     {

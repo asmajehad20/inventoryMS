@@ -9,9 +9,12 @@ namespace inventoryMSUnitTest
         [Fact]
         public void GetAllProducts_Returns_Products()
         {
+            //Arrange 
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
 
             // Act
-            var result = InventoryManager.GetAllProducts();
+            var result = inventoryManager.GetAllProducts();
 
             // Assert
             Assert.NotNull(result);
@@ -24,6 +27,9 @@ namespace inventoryMSUnitTest
         public void AddProduct_ValidInput_ReturnsProduct()
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             string name = "TestD";
             string barcode = "113400780089";
             int price = 10;
@@ -32,7 +38,7 @@ namespace inventoryMSUnitTest
             string category = "Electronics";
 
             // Act
-            Product addedProduct = InventoryManager.AddProduct(name, barcode, price, quantity, status, category);
+            Product addedProduct = inventoryManager.AddProduct(name, barcode, price, quantity, status, category);
 
             // Assert
             Assert.NotNull(addedProduct);
@@ -50,8 +56,12 @@ namespace inventoryMSUnitTest
         [InlineData("Test Product", "123456789087", 10, 5, "in stock", "")] // Invalid category
         public void AddProduct_InvalidInput_ThrowsArgumentException(string name, string barcode, int price, int quantity, string status, string category)
         {
+            //Arrange 
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => InventoryManager.AddProduct(name, barcode, price, quantity, status, category));
+            Assert.Throws<ArgumentException>(() => inventoryManager.AddProduct(name, barcode, price, quantity, status, category));
         }
 
         [Theory]
@@ -59,14 +69,21 @@ namespace inventoryMSUnitTest
         [InlineData("Test Product", "Existing Barcode", 10, 5, "in stock", "Electronics")]
         public void AddProduct_ProductAlreadyExists_ThrowsException(string name, string barcode, int price, int quantity, string status, string category)
         {
+            //Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             // Act & Assert
-            Assert.Throws<Exception>(() => InventoryManager.AddProduct(name, barcode, price, quantity, status, category));
+            Assert.Throws<Exception>(() => inventoryManager.AddProduct(name, barcode, price, quantity, status, category));
         }
 
         [Fact]
         public void UpdateProduct_ProductExists_SuccessfulUpdate()
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             string keyword = "tv";
             string name = "tv";
             string barcode = "123456789777";
@@ -76,7 +93,7 @@ namespace inventoryMSUnitTest
             string category = "Electronics";
 
             // Act & Assert
-            Assert.True(InventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category));
+            Assert.True(inventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category));
         }
 
 
@@ -85,6 +102,9 @@ namespace inventoryMSUnitTest
         public void UpdateProduct_ProductDoesNotExist_ExceptionThrown()
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             string keyword = "non_existing_product_keyword";
             string name = "Name";
             string barcode = "Barcode";
@@ -94,27 +114,33 @@ namespace inventoryMSUnitTest
             string category = "Category";
 
             // Act & Assert
-            Assert.Throws<Exception>(() => InventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category));
+            Assert.Throws<Exception>(() => inventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category));
         }
 
         [Fact]
         public void UpdateProduct_NullParameters_SuccessfulUpdateWithStoredValues()
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             string keyword = "Jeans";
 
             // Act & Assert
-            Assert.True(InventoryManager.UpdateProduct(keyword, null, "909090909091", 0, 0, null, null));
+            Assert.True(inventoryManager.UpdateProduct(keyword, null, "909090909091", 0, 0, null, null));
         }
 
         [Fact]
         public void DeleteProduct_ProductExists_SuccessfulDeletion()
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             string keyword = "TestD"; 
 
             // Act & Assert
-            Assert.True(InventoryManager.DeleteProduct(keyword));
+            Assert.True(inventoryManager.DeleteProduct(keyword));
         }
 
     }

@@ -10,11 +10,34 @@ namespace inventoryMSLogic.src.DataAccessLayer
     /// </summary>
     public class Product
     {
+        /// <summary>
+        /// the name of the product in the inventory.
+        /// </summary>
         public string Name { get; set; } = "";
+
+        /// <summary>
+        /// the price of the product in the inventory.
+        /// </summary>
         public int Price { get; set; } = 0;
+
+        /// <summary>
+        /// the barcode of the product in the inventory.
+        /// </summary>
         public string Barcode { get; set; } = "";
+
+        /// <summary>
+        /// the quantity of the product in the inventory.
+        /// </summary>
         public int Quantity { get; set; } = 0;
+
+        /// <summary>
+        /// the status of the product in the inventory.
+        /// </summary>
         public string Status { get; set; } = "";
+
+        /// <summary>
+        /// the category of the product in the inventory.
+        /// </summary>
         public string CategoryName { get; set; } = "";
     }
 
@@ -24,7 +47,19 @@ namespace inventoryMSLogic.src.DataAccessLayer
     public class InventoryRepository
     {
         private readonly DatabaseConnection dbConnection;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InventoryRepository"/> class.
+        /// </summary>
+        /// <remarks>
+        /// This constructor creates a new <see cref="DatabaseConnection"/> object and assigns it to the database connection field.
+        /// </remarks>
         public InventoryRepository(){ dbConnection = new DatabaseConnection(); }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InventoryRepository"/> class with the specified database connection.
+        /// </summary>
+        /// <param name="connection">The database connection to be used by the inventory repository.</param>
         public InventoryRepository(DatabaseConnection connection){ dbConnection = connection; }
 
         //////////////////////////////////////////////////////////////////////

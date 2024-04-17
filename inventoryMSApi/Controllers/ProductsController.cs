@@ -14,6 +14,12 @@ namespace inventoryMSApi.Controllers
     [Authorize]
     public class ProductsController : ControllerBase
     {
+        private readonly InventoryManager inventoryManager;
+        public ProductsController() 
+        {
+            InventoryRepository repository = new();
+            inventoryManager = new(repository);
+        }
         /// <summary>
         /// Retrieves products optionally filtered by a keyword.
         /// user can search for a product or list of products uising a keyword in Header
@@ -26,13 +32,13 @@ namespace inventoryMSApi.Controllers
             if (string.IsNullOrEmpty(keyword))
             {
                 // If model is null or keyword is empty, return all products
-                Product[] allProducts = InventoryManager.GetAllProducts();
+                Product[] allProducts = inventoryManager.GetAllProducts();
                 return Ok(allProducts);
             }
             else
             {
                 // Retrieve products based on the provided keyword
-                Product[] filteredProducts = InventoryManager.Search(keyword);
+                Product[] filteredProducts = inventoryManager.Search(keyword);
                 if (filteredProducts.Length == 0)
                 {
                     return NotFound();
@@ -55,11 +61,11 @@ namespace inventoryMSApi.Controllers
         {
             if (product == null) return BadRequest("Product data is missing.");
 
-            var existingProduct = InventoryManager.GetProduct(product.Name ?? product.Barcode);
+            var existingProduct = inventoryManager.GetProduct(product.Name ?? product.Barcode);
             if (existingProduct != null)
                 return BadRequest("Product already in inventory.");
 
-            Product newProduct = InventoryManager.AddProduct(product.Name??"", product.Barcode ?? "", product.Price, product.Quantity, product.Status??"", product.CategoryName??"");
+            Product newProduct = inventoryManager.AddProduct(product.Name??"", product.Barcode ?? "", product.Price, product.Quantity, product.Status??"", product.CategoryName??"");
 
             if (newProduct != null) 
             {
@@ -88,7 +94,7 @@ namespace inventoryMSApi.Controllers
                 return BadRequest("Keyword is missing.");
             }
 
-            if (InventoryManager.CheckIfProductExists(keyword))
+            if (inventoryManager.CheckIfProductExists(keyword))
             {
 
                 string name = product.Name;
@@ -100,7 +106,7 @@ namespace inventoryMSApi.Controllers
                 string status = product.Status;
                 string category = product.CategoryName;
 
-                InventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category);
+                inventoryManager.UpdateProduct(keyword, name, barcode, price, quantity, status, category);
                 return Ok("product updated");
             }
 
@@ -117,13 +123,13 @@ namespace inventoryMSApi.Controllers
         public IActionResult DeleteProduct(string keyword)
         {
 
-            Product? existingProduct = InventoryManager.GetProduct(keyword);
+            Product? existingProduct = inventoryManager.GetProduct(keyword);
             if (existingProduct == null)
             {
                 return NotFound("Product not found.");
             }
 
-            InventoryManager.DeleteProduct(keyword);
+            inventoryManager.DeleteProduct(keyword);
 
             return Ok("Product deleted successfully.");
         }
@@ -137,7 +143,7 @@ namespace inventoryMSApi.Controllers
         public IActionResult GetProduct(string keyword)
         {
 
-            Product? product = InventoryManager.GetProduct(keyword);
+            Product? product = inventoryManager.GetProduct(keyword);
             if (string.IsNullOrEmpty(keyword))
             {
                 return NotFound();

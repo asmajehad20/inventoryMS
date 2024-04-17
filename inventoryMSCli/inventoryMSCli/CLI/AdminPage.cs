@@ -14,6 +14,8 @@ namespace inventoryMSCli.CLI
     {
         public static string UserName { get; private set; } = "";
 
+        private readonly InventoryManager _inventoryManager;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AdminPage"/> class with the specified username.
         /// </summary>
@@ -21,6 +23,8 @@ namespace inventoryMSCli.CLI
         public AdminPage(string userName)
         {
             UserName = userName;
+            InventoryRepository _repository = new();
+            _inventoryManager = new InventoryManager(_repository);
         }
 
         /// <summary>
@@ -50,7 +54,7 @@ namespace inventoryMSCli.CLI
         /// <summary>
         /// Runs the admin menu of the Inventory Management System CLI.
         /// </summary>
-        public static void Run()
+        public void Run()
         {
             Console.Clear();
             bool programExit = false;
@@ -195,7 +199,7 @@ namespace inventoryMSCli.CLI
         /// <summary>
         /// Runs the product menu.
         /// </summary>
-        private static void ProductMenuRun()
+        private void ProductMenuRun()
         {
             Console.Clear();
             bool programExit = false;
@@ -209,7 +213,7 @@ namespace inventoryMSCli.CLI
                 {
 
                     case "all":
-                        Product[] products = InventoryManager.GetAllProducts();
+                        Product[] products = _inventoryManager.GetAllProducts();
                         Console.WriteLine("Products:");
                         Console.WriteLine("----------------------------------------------------------------------------------------------------------");
                         Console.WriteLine("|Product Name          | Barcode       | Price   | Quantity  | Status       | Category                   |");
@@ -227,7 +231,8 @@ namespace inventoryMSCli.CLI
                     case "add":
                         try
                         {
-                            UserPage.AddNewProduct();
+                            UserPage _userPage = new(UserName);
+                            _userPage.AddNewProduct();
                         }
                         catch(Exception ex)
                         {
@@ -236,13 +241,13 @@ namespace inventoryMSCli.CLI
                         break;
 
                     case "status":
-                        InventoryManager.StatusTracking(UserPage.SetStatus().ToLower());
+                        _inventoryManager.StatusTracking(UserPage.SetStatus().ToLower());
                         break;
 
                     case "delete":
                         Console.Write("Product Name or Barcode:");
                         string keyword = Console.ReadLine() ?? "";
-                        InventoryManager.DeleteProduct(keyword);
+                        _inventoryManager.DeleteProduct(keyword);
                         break;
 
                     case "update":
@@ -250,7 +255,8 @@ namespace inventoryMSCli.CLI
                         string productkeywork = Console.ReadLine() ?? "";
                         try
                         {
-                            UserPage.UpdateProduct(productkeywork);
+                            UserPage _userPage = new(UserName);
+                            _userPage.UpdateProduct(productkeywork);
                         }
                         catch (Exception ex)
                         {
@@ -261,14 +267,14 @@ namespace inventoryMSCli.CLI
                     case "p_status":
                         Console.Write("Product Name or Barcode:");
                         string ProductStatus = Console.ReadLine() ?? "";
-                        InventoryManager.GetProductStatus(ProductStatus);
+                        _inventoryManager.GetProductStatus(ProductStatus);
                         break;
 
                     case "search":
                         Console.Write("search word:");
                         string searchkeyword = Console.ReadLine() ?? "";
 
-                        Product[] product = InventoryManager.Search(searchkeyword);
+                        Product[] product = _inventoryManager.Search(searchkeyword);
                         Console.WriteLine("Products:");
                         Console.WriteLine(JsonSerializer.Serialize(product, new JsonSerializerOptions { WriteIndented = true }));
 
@@ -316,7 +322,7 @@ namespace inventoryMSCli.CLI
         /// <summary>
         /// Runs the roles menu.
         /// </summary>
-        private static void RolesMenuRun()
+        private void RolesMenuRun()
         {
             Console.Clear();
             bool programExit = false;
@@ -388,7 +394,7 @@ namespace inventoryMSCli.CLI
         /// <summary>
         /// Runs the categories menu.
         /// </summary>
-        private static void CategoryMenuRun()
+        private void CategoryMenuRun()
         {
             Console.Clear();
             bool programExit = false;
@@ -402,7 +408,7 @@ namespace inventoryMSCli.CLI
                 {
 
                     case "all":
-                        InventoryManager.GetAllCategories();
+                        _inventoryManager.GetAllCategories();
                         
                         break;
 
@@ -411,7 +417,7 @@ namespace inventoryMSCli.CLI
                         {
                             Console.Write("Category Name:");
                             string NewCategoryName = Console.ReadLine() ?? "";
-                            InventoryManager.AddCategory(NewCategoryName);
+                            _inventoryManager.AddCategory(NewCategoryName);
                         }
                         catch (Exception ex)
                         {
@@ -424,10 +430,11 @@ namespace inventoryMSCli.CLI
                         try
                         {
                             Console.Write("Choose the category you want to update:");
-                            string category = UserPage.SetCategory();
+                            UserPage _userPage = new(UserName);
+                            string category = _userPage.SetCategory();
                             Console.Write("category new name:");
                             string newName = Console.ReadLine() ?? "";
-                            InventoryManager.UpdateCategory(category, newName);
+                            _inventoryManager.UpdateCategory(category, newName);
                         }
                         catch (Exception ex)
                         {
@@ -439,7 +446,7 @@ namespace inventoryMSCli.CLI
                         try
                         {
                             Console.Write("Category Name:");
-                            InventoryManager.DeleteCategory(Console.ReadLine() ?? "");
+                            _inventoryManager.DeleteCategory(Console.ReadLine() ?? "");
                         }
                         catch (Exception ex)
                         {

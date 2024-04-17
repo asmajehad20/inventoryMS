@@ -9,8 +9,17 @@ namespace inventoryMSLogic.src.DataAccessLayer
     /// </summary>
     public class User
     {
+        /// <summary>
+        /// Represents the user name in the system.
+        /// </summary>
         public string Username { get; set; } = "";
+        /// <summary>
+        /// Represents the password of the user in the system.
+        /// </summary>
         public string Password { get; set; } = "";
+        /// <summary>
+        /// Represents the role of the user in the system.
+        /// </summary>
         public string Role { get; set; } = "";
         
     }

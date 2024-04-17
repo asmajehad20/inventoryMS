@@ -8,9 +8,17 @@ namespace inventoryMSLogic.src.DataAccessLayer
     public class DatabaseConnection
     {
         private readonly string ConnectionString = "Host=localhost;Username=postgres;Password=12345;Database=inventoryms";
+        /// <summary>
+        /// Represents a database connection used for interacting with PostgreSQL database.
+        /// </summary>
         public readonly NpgsqlConnection Connection;
 
-        // Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseConnection"/> class.
+        /// </summary>
+        /// <remarks>
+        /// This constructor creates a new <see cref="NpgsqlConnection"/> object using the connection string and assigns it to the Connection property.
+        /// </remarks>
         public DatabaseConnection()
         {
             Connection = new NpgsqlConnection(ConnectionString);

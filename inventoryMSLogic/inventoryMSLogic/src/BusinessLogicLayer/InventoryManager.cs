@@ -7,17 +7,21 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
     /// <summary>
     /// Provides methods for managing inventory-related operations.
     /// </summary>
-    public class InventoryManager
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="InventoryManager"/> class with the specified inventory repository.
+    /// </remarks>
+    /// <param name="productData">The inventory repository to be used by the inventory manager.</param>
+    public class InventoryManager(InventoryRepository productData)
     {
         
-        public static readonly InventoryRepository ProductData = new();
+        private readonly InventoryRepository ProductData = productData;
 
         /// <summary>
         /// Checks if a product exists in the inventory.
         /// </summary>
         /// <param name="keyword">The keyword to identify the product.</param>
         /// <returns>True if the product exists, otherwise false.</returns>
-        public static bool CheckIfProductExists(string keyword)
+        public bool CheckIfProductExists(string keyword)
         {
             return ProductData.ProductExists(keyword);
         }
@@ -28,7 +32,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="keyword">The keyword to search for, which can be either the product name or barcode.</param>
         /// <returns>A <see cref="Product"/> object containing details of the found product, or null if not found.</returns>
         /// <exception cref="Exception">Thrown when the product is not found.</exception>
-        public static Product? GetProduct(string keyword)
+        public Product? GetProduct(string keyword)
         {
             if (!CheckIfProductExists(keyword))
             {
@@ -42,7 +46,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Retrieves information of all products from the inventory.
         /// </summary>
         /// <returns>An array of Product objects representing all products.</returns>
-        public static Product[] GetAllProducts()
+        public Product[] GetAllProducts()
         {
             return ProductData.GetAllProducts();
         }
@@ -57,7 +61,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// <param name="status">The status of the product.</param>
         /// <param name="category">The category of the product.</param>
         /// <returns>The added product.</returns>
-        public static Product AddProduct(string name, string barcode, int price, int quantity, string status, string category)
+        public Product AddProduct(string name, string barcode, int price, int quantity, string status, string category)
         {
             // Input validation
             if (string.IsNullOrEmpty(name) ||
@@ -106,13 +110,13 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// If a parameter is null or empty, it retains the existing value.
         /// </summary>
         /// <param name="keyword">The keyword to identify the product to be updated.</param>
-        /// <param name="ProductName">The new name of the product.</param>
-        /// <param name="Barcode">The new barcode of the product.</param>
-        /// <param name="Price">The new price of the product.</param>
-        /// <param name="Quantity">The new quantity of the product.</param>
-        /// <param name="Status">The new status of the product.</param>
-        /// <param name="Category">The new category of the product.</param>
-        public static bool UpdateProduct(string keyword, string? name, string? barcode, int price, int quantity, string? status, string? category)
+        /// <param name="name">The new name of the product.</param>
+        /// <param name="barcode">The new barcode of the product.</param>
+        /// <param name="price">The new price of the product.</param>
+        /// <param name="quantity">The new quantity of the product.</param>
+        /// <param name="status">The new status of the product.</param>
+        /// <param name="category">The new category of the product.</param>
+        public bool UpdateProduct(string keyword, string? name, string? barcode, int price, int quantity, string? status, string? category)
         {
 
             if (!CheckIfProductExists(keyword))
@@ -146,7 +150,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Deletes a product from the inventory.
         /// </summary>
         /// <param name="keyword">The keyword to identify the product to be deleted.</param>
-        public static bool DeleteProduct(string keyword)
+        public bool DeleteProduct(string keyword)
         {
             if (ProductData.ProductExists(keyword) && ProductData.DeleteProduct(keyword))
             {
@@ -163,7 +167,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Retrieves status information of a product from the inventory.
         /// </summary>
         /// <param name="keyword">The keyword to identify the product.</param>
-        public static void StatusTracking(string keyword)
+        public void StatusTracking(string keyword)
         {
             Product[] products = ProductData.GetProductsByStatus(keyword);
 
@@ -175,7 +179,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Retrieves status information of a specific product from the inventory.
         /// </summary>
         /// <param name="keyword">The keyword to identify the product.</param>
-        public static void GetProductStatus(string keyword)
+        public void GetProductStatus(string keyword)
         {
             string productStatus = ProductData.ProductStatus(keyword);
             string status = productStatus.Split(',')[0];
@@ -191,7 +195,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// </summary>
         /// <param name="keyword">The keyword to search for.</param>
         /// <returns>An array of Product objects matching the search criteria.</returns>
-        public static Product[] Search(string keyword)
+        public Product[] Search(string keyword)
         {
             return ProductData.Search(keyword);
         }
@@ -204,7 +208,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Retrieves all categories from the inventory.
         /// </summary>
         /// <returns>An array of strings representing all categories.</returns>
-        public static string[] GetCategories()
+        public string[] GetCategories()
         {
             return ProductData.GetAllCategories();
         }
@@ -213,7 +217,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Retrieves all categories from the inventory.
         /// </summary>
         /// <returns>A dictionary containing category number and their corresponding names.</returns>
-        public static Dictionary<int, string> GetAllCategories()
+        public Dictionary<int, string> GetAllCategories()
         {
             List<string> categoriesList = ProductData.GetAllCategories().ToList();
 
@@ -236,7 +240,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Adds a new category to the inventory.
         /// </summary>
         /// <param name="category">The name of the category to be added.</param>
-        public static void AddCategory(string category)
+        public void AddCategory(string category)
         {
             if (string.IsNullOrEmpty(category))
             {
@@ -261,7 +265,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// Deletes a category from the inventory.
         /// </summary>
         /// <param name="category">The name of the category to be deleted.</param>
-        public static bool DeleteCategory(string category)
+        public bool DeleteCategory(string category)
         {
 
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
@@ -279,7 +283,7 @@ namespace inventoryMSLogic.src.BusinessLogicLayer
         /// </summary>
         /// <param name="category">The name of the category to be updated.</param>
         /// <param name="NewNmae">The new updated name of the category.</param>
-        public static bool UpdateCategory(string category, string NewNmae)
+        public bool UpdateCategory(string category, string NewNmae)
         {
             if (!string.IsNullOrEmpty(category) && ProductData.CategoryExists(category))
             {

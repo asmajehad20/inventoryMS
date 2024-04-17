@@ -11,8 +11,12 @@ namespace inventoryMSUnitTest
         [Fact]
         public void GetCategories_ReturnsCategories()
         {
+            //Arrange 
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
+
             // Act
-            string[] result = InventoryManager.GetCategories();
+            string[] result = inventoryManager.GetCategories();
 
             // Assert
             Assert.NotNull(result);
@@ -26,12 +30,14 @@ namespace inventoryMSUnitTest
         public void AddCategory_Scenarios(string category, bool expectedResult)
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
             bool actualResult;
 
             // Act
             try
             {
-                InventoryManager.AddCategory(category);
+                inventoryManager.AddCategory(category);
                 actualResult = true; 
             }
             catch
@@ -47,10 +53,12 @@ namespace inventoryMSUnitTest
         public void DeleteCategory_ExistingCategory_DeletesCategory()
         {
             // Arrange
+            InventoryRepository repository = new();
+            InventoryManager inventoryManager = new(repository);
             string existingCategory = "New category5";
 
             // Act
-            bool result = InventoryManager.DeleteCategory(existingCategory);
+            bool result = inventoryManager.DeleteCategory(existingCategory);
 
             // Assert
             Assert.True(result);

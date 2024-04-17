@@ -95,13 +95,13 @@ namespace inventoryMSCli.CLI
                 string UserRole = AuthenticationManager.GetUserRole(UserName);
                 if (UserRole == "user")
                 {
-                    _ = new UserPage(UserName);
-                    UserPage.Run();
+                    UserPage _userPage = new UserPage(UserName);
+                    _userPage.Run();
                 }
                 else
                 {
-                    _ = new AdminPage(UserName);
-                    AdminPage.Run();
+                    AdminPage adminPage_ = new AdminPage(UserName);
+                    adminPage_.Run();
                 }
             }
             else

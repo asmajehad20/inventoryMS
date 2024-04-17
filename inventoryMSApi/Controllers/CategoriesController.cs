@@ -14,6 +14,12 @@ namespace inventoryMSApi.Controllers
     [Authorize]
     public class CategoriesController : ControllerBase
     {
+        private readonly InventoryManager inventoryManager;
+        public CategoriesController()
+        {
+            InventoryRepository repository = new();
+            inventoryManager = new(repository);
+        }
         /// <summary>
         /// Retrieves all categories from inventory
         /// </summary>
@@ -21,7 +27,7 @@ namespace inventoryMSApi.Controllers
         [HttpGet]
         public IActionResult GetCategories()
         {
-             string[] allcategories = InventoryManager.GetCategories();
+             string[] allcategories = inventoryManager.GetCategories();
              
              if (allcategories.Length == 0)
             {
@@ -50,7 +56,7 @@ namespace inventoryMSApi.Controllers
 
             try
             {
-                InventoryManager.AddCategory(model.Name);
+                inventoryManager.AddCategory(model.Name);
                 return Ok("category added");
             }
             catch(Exception ex)
@@ -85,7 +91,7 @@ namespace inventoryMSApi.Controllers
 
             try
             {
-                if(InventoryManager.UpdateCategory(keyword, model.Name))
+                if(inventoryManager.UpdateCategory(keyword, model.Name))
                 {
                     return Ok("category updated");
                 }
@@ -113,7 +119,7 @@ namespace inventoryMSApi.Controllers
 
             try
             {
-                if (InventoryManager.DeleteCategory(keyword))
+                if (inventoryManager.DeleteCategory(keyword))
                 {
                     return Ok("category deleted");
                 }
