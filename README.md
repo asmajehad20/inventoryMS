@@ -5,9 +5,9 @@ An inventory management system CLI application with APIs, designed to track and 
 
 1. [Features](#features)
    ---
-3. [Installation](#installation)
+2. [Installation](#installation)
    ---
-5. [Intefaces](#intefaces)
+3. [Intefaces](#intefaces)
    ---
 
 ## Features
@@ -36,8 +36,6 @@ Follow these steps to install and set up the inventory management system:
 2. **Navigate to the Project Directory**
    cd path-to-inventoryMS\inventory
    start inventory.sln
-3. **Install Dependencies:**
-   - dotnet add package Npgsql. This command installs the Npgsql package, which is the .NET data provider for PostgreSQL.
 4. **Set Up PostgreSQL Database**
 5. **Start the Application:**
 
