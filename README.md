@@ -12,6 +12,7 @@ An inventory management system CLI application with APIs, designed to track and 
 
 ## Features
 users in the systems are of roles user, admin.
+(all users passwords are saved as SHA256 hash for security)
 
 role user can:
 - add new product 
